@@ -8,9 +8,9 @@ Assumes the following:
 * Add a new key to `assets/data/stratagems.json` with the key combination.
 * Add icon with matching keyname.png to `assets/icons`.
 * Add matching `actions.keyname.name` to `locales` files.
+* Add matching `actions.keyname.labels.*` to `locales` files.
 
 ### TODO
-* Better labels (add top/center/bottom instead of just name).
-* Add "custom buttom" option where a user can define the stratagem itself.
+* Add "custom button" option where a user can define the stratagem itself.
 * Package the icon set
 * Test all the buttons
