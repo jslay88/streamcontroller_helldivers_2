@@ -1,5 +1,6 @@
 {
   "plugin.name": "HELLDIVERS 2",
+  "actions.StratagemHeroToggle.name": "Stratagem Hero Toggle",
   "actions.JumpPack.name": "Jump Pack",
   "actions.SupplyPack.name": "Supply Pack",
   "actions.GuardDogRover.name": "\"Guard Dog\" Rover",

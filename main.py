@@ -20,6 +20,29 @@ log.debug("Init HELLDIVERS 2")
 SLEEP_DELAY = 0.02
 
 
+class StratagemHeroButton(ActionBase):
+    def __init__(self, action_id: str, action_name: str,
+                 deck_controller: "DeckController", page: Page, coords: str, plugin_base: PluginBase):
+        super().__init__(action_id=action_id, action_name=action_name,
+                         deck_controller=deck_controller, page=page, coords=coords, plugin_base=plugin_base)
+        self.show()
+
+    def on_ready(self):
+        self.show()
+
+    def on_key_down(self):
+        self.plugin_base.hero_mode = not self.plugin_base.hero_mode
+        self.show()
+
+    def show(self):
+        fname = "hero_off.png"
+        if self.plugin_base.hero_mode:
+            fname = "hero_on.png"
+        with Image.open(os.path.join(self.plugin_base.PATH, "assets", "icons", fname)) as img:
+            image = img.copy()
+        self.set_media(image=image, size=1.00, valign=-1)
+
+
 class StratagemButton(ActionBase):
     def __init__(self, action_id: str, action_name: str,
                  deck_controller: "DeckController", page: Page, coords: str, plugin_base: PluginBase):
@@ -41,9 +64,11 @@ class StratagemButton(ActionBase):
 
     def on_key_down(self):
         log.debug(f"Execute Stratagem: {self.stratagem_key}: {self.stratagem}")
-        self.plugin_base.ui.write(ecodes.EV_KEY, ecodes.KEY_LEFTCTRL, 1)
-        self.plugin_base.ui.syn()
-        sleep(SLEEP_DELAY)
+        if not self.plugin_base.hero_mode:
+            log.debug("Not Heroing")
+            self.plugin_base.ui.write(ecodes.EV_KEY, ecodes.KEY_LEFTCTRL, 1)
+            self.plugin_base.ui.syn()
+            sleep(SLEEP_DELAY)
         try:
             for key in self.stratagem:
                 self.plugin_base.ui.write(ecodes.EV_KEY, ecodes.ecodes[f"KEY_{key}"], 1)
@@ -71,6 +96,8 @@ class HellDiversPlugin(PluginBase):
         self.stratagems = None
         self.init_stratagems()
 
+        self.hero_mode = False
+
         for stratagem in self.stratagems:
             try:
                 self.add_action_holder(ActionHolder(
@@ -81,6 +108,13 @@ class HellDiversPlugin(PluginBase):
                 ))
             except Exception as e:
                 log.error(e)
+
+        self.add_action_holder(ActionHolder(
+            plugin_base=self,
+            action_base=StratagemHeroButton,
+            action_id="net_jslay_helldivers_2::StratagemHeroToggle",
+            action_name=self.lm.get("actions.StratagemHeroToggle.name")
+        ))
 
         self.register(
             plugin_name=self.lm.get("plugin.name"),
