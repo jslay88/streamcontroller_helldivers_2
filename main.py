@@ -38,9 +38,11 @@ class StratagemHeroButton(ActionBase):
         fname = "hero_off.png"
         if self.plugin_base.hero_mode:
             fname = "hero_on.png"
-        with Image.open(os.path.join(self.plugin_base.PATH, "assets", "icons", fname)) as img:
-            image = img.copy()
-        self.set_media(image=image, size=1.00, valign=-1)
+        self.set_media(
+            media_path=os.path.join(self.plugin_base.PATH, "assets", "icons", fname),
+            size=1.00,
+            valign=-1
+        )
 
 
 class StratagemButton(ActionBase):
@@ -54,9 +56,11 @@ class StratagemButton(ActionBase):
 
     def show(self):
         self.set_bottom_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.name"))
-        with Image.open(os.path.join(self.plugin_base.PATH, "assets", "icons", self.stratagem_key + ".png")) as img:
-            image = img.copy()
-        self.set_media(image=image, size=1.00, valign=-1)
+        self.set_media(
+            media_path=os.path.join(self.plugin_base.PATH, "assets", "icons", self.stratagem_key + ".png"),
+            size=1.00,
+            valign=-1
+        )
 
 
     def on_ready(self):
