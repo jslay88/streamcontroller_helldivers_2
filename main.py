@@ -35,6 +35,10 @@ class StratagemHeroButton(ActionBase):
         self.show()
 
     def show(self):
+        self.set_top_label(self.plugin_base.lm.get("actions.StratagemHeroToggle.labels.top", ""))
+        self.set_center_label(self.plugin_base.lm.get("actions.StratagemHeroToggle.labels.center", "Stratagem"))
+        self.set_bottom_label(self.plugin_base.lm.get("actions.StratagemHeroToggle.labels.bottom", "Hero"))
+
         fname = "hero_off.png"
         if self.plugin_base.hero_mode:
             fname = "hero_on.png"
@@ -55,7 +59,9 @@ class StratagemButton(ActionBase):
         self.show()
 
     def show(self):
-        self.set_bottom_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.name"))
+        self.set_top_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.labels.top", ""))
+        self.set_center_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.labels.center", ""))
+        self.set_bottom_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.labels.bottom", self.plugin_base.lm.get(f"actions.{self.stratagem_key}.name")))
         self.set_media(
             media_path=os.path.join(self.plugin_base.PATH, "assets", "icons", self.stratagem_key + ".png"),
             size=1.00,
@@ -144,4 +150,3 @@ class HellDiversPlugin(PluginBase):
         with open(os.path.join(self.PATH, "assets", "data", "stratagems.json")) as f:
             self.stratagems = json.load(f)
         
-
