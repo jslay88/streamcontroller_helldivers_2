@@ -73,6 +73,10 @@ class StratagemButton(ActionBase):
         self.show()
 
     def on_key_down(self):
+        if self.plugin_base.executing:
+            log.debug("Currently executing other stratagem! Aborting!")
+            return
+        self.plugin_base.executing = True
         log.debug(f"Execute Stratagem: {self.stratagem_key}: {self.stratagem}")
         if not self.plugin_base.hero_mode:
             log.debug("Not Heroing")
@@ -91,6 +95,7 @@ class StratagemButton(ActionBase):
             self.plugin_base.ui.write(ecodes.EV_KEY, ecodes.KEY_LEFTCTRL, 0)
             self.plugin_base.ui.syn()
             sleep(SLEEP_DELAY)
+            self.plugin_base.executing = False
 
 
 class HellDiversPlugin(PluginBase):
@@ -107,6 +112,8 @@ class HellDiversPlugin(PluginBase):
         self.init_stratagems()
 
         self.hero_mode = False
+
+        self.executing = False
 
         for stratagem in self.stratagems:
             try:

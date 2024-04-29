@@ -26,6 +26,7 @@
   "Resupply": ["DOWN", "DOWN", "UP", "RIGHT"],
   "Hellbomb": ["DOWN", "UP", "LEFT", "DOWN", "UP", "RIGHT", "DOWN", "UP"],
   "SSDDelivery": ["DOWN", "DOWN", "DOWN", "UP", "UP"],
+  "ProspectingDrill": ["DOWN", "DOWN", "LEFT", "RIGHT", "DOWN", "DOWN"],
   "SeismicProbe": ["UP", "UP", "LEFT", "RIGHT", "DOWN", "DOWN"],
   "UploadData": ["LEFT", "RIGHT", "UP", "UP", "UP"],
   "EagleRearm": ["UP", "UP", "LEFT", "UP", "RIGHT"],
