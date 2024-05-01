@@ -17,7 +17,7 @@ from PIL import Image
 log.debug("Init HELLDIVERS 2")
 
 
-SLEEP_DELAY = 0.02
+SLEEP_DELAY = 0.03
 
 
 class StratagemHeroButton(ActionBase):
