@@ -3,6 +3,17 @@
   "thumbnail": "store/thumbnail.png",
   "id": "net_jslay_helldivers_2",
   "name": "HELLDIVERS 2",
-  "description": "Stratagems keys for HELLDIVERS 2",
-  "short-description": "Stratagems keys"
+  "descriptions": {
+    "en_US": "Stratagem keys for HELLDIVERS 2"
+  },
+  "short-descriptions": {
+    "en_US": "Stratagem keys"
+  },
+  "tags": [
+    "Gaming"
+  ],
+  "minimum-app-version": "1.5.0-beta",
+  "app-version": "1.5.0-beta",
+  "description": "Stratagem keys for HELLDIVERS 2",
+  "short-description": "Stratagem keys"
 }
