@@ -194,3 +194,4 @@ vid_cache/
 semantic-release
 
 !assets/data
+settings.json

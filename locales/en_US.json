@@ -255,6 +255,20 @@
   "actions.Eagle500kgBomb.name": "Eagle 500kg Bomb",
   "actions.Eagle500kgBomb.labels.top": "Eagle",
   "actions.Eagle500kgBomb.labels.center": "500kg",
-  "actions.Eagle500kgBomb.labels.bottom": "Bomb"
+  "actions.Eagle500kgBomb.labels.bottom": "Bomb",
+  "config.window.title": "HELLDIVERS 2 Plugin Config",
+  "config.row.label": "Global Plugin Config",
+  "config.button.label": "Edit",
+  "config.pressed_delay.title": "Delay after key press",
+  "config.pressed_delay.subtitle": "In seconds",
+  "config.released_delay.title": "Delay after key release",
+  "config.released_delay.subtitle": "In seconds",
+  "config.activator_binding.label": "Activator binding",
+  "config.UP_binding.label": "Up binding",
+  "config.DOWN_binding.label": "Down binding",
+  "config.LEFT_binding.label": "Left binding",
+  "config.RIGHT_binding.label": "Right binding",
+  "config.rebind.label": "Rebind",
+  "config.rebinding.label": "Press any key"
 }
 
