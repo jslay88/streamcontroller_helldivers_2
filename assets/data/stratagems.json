@@ -21,6 +21,7 @@
   "QuasarCannon": ["DOWN", "DOWN", "UP", "LEFT", "RIGHT"],
   "AirburstRocketLauncher": ["DOWN", "UP", "UP", "LEFT", "RIGHT"],
   "PatriotExosuit": ["LEFT", "DOWN", "RIGHT", "UP", "LEFT", "DOWN", "DOWN"],
+  "EmancipatorExosuit": ["LEFT", "DOWN", "RIGHT", "UP", "LEFT", "DOWN", "UP"],
   "Reinforce": ["UP", "DOWN", "RIGHT", "LEFT", "UP"],
   "SOSBeacon": ["UP", "DOWN", "RIGHT", "UP"],
   "Resupply": ["DOWN", "DOWN", "UP", "RIGHT"],
