@@ -21,10 +21,9 @@ SLEEP_DELAY = 0.03
 
 
 class StratagemHeroButton(ActionBase):
-    def __init__(self, action_id: str, action_name: str,
-                 deck_controller: "DeckController", page: Page, coords: str, plugin_base: PluginBase):
-        super().__init__(action_id=action_id, action_name=action_name,
-                         deck_controller=deck_controller, page=page, coords=coords, plugin_base=plugin_base)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
         self.show()
 
     def on_ready(self):
@@ -50,10 +49,9 @@ class StratagemHeroButton(ActionBase):
 
 
 class StratagemButton(ActionBase):
-    def __init__(self, action_id: str, action_name: str,
-                 deck_controller: "DeckController", page: Page, coords: str, plugin_base: PluginBase):
-        super().__init__(action_id=action_id, action_name=action_name,
-                         deck_controller=deck_controller, page=page, coords=coords, plugin_base=plugin_base)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
         self.stratagem_key = self.action_id.split("::", 1)[1]
         self.stratagem = self.plugin_base.stratagems[self.stratagem_key]
         self.show()
