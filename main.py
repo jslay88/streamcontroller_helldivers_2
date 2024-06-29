@@ -24,8 +24,6 @@ class StratagemHeroButton(ActionBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.show()
-
     def on_ready(self):
         self.show()
 
@@ -54,7 +52,6 @@ class StratagemButton(ActionBase):
         
         self.stratagem_key = self.action_id.split("::", 1)[1]
         self.stratagem = self.plugin_base.stratagems[self.stratagem_key]
-        self.show()
 
     def show(self):
         self.set_top_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.labels.top", ""))
