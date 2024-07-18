@@ -20,6 +20,7 @@
   "ArcThrower": ["DOWN", "RIGHT", "DOWN", "UP", "LEFT", "LEFT"],
   "QuasarCannon": ["DOWN", "DOWN", "UP", "LEFT", "RIGHT"],
   "AirburstRocketLauncher": ["DOWN", "UP", "UP", "LEFT", "RIGHT"],
+  "Commando": ["DOWN", "LEFT", "UP", "DOWN", "RIGHT"],
   "PatriotExosuit": ["LEFT", "DOWN", "RIGHT", "UP", "LEFT", "DOWN", "DOWN"],
   "EmancipatorExosuit": ["LEFT", "DOWN", "RIGHT", "UP", "LEFT", "DOWN", "UP"],
   "Reinforce": ["UP", "DOWN", "RIGHT", "LEFT", "UP"],

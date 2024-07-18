@@ -58,7 +58,7 @@ class StratagemButton(ActionBase):
         self.set_center_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.labels.center", ""))
         self.set_bottom_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.labels.bottom", self.plugin_base.lm.get(f"actions.{self.stratagem_key}.name")))
         self.set_media(
-            media_path=os.path.join(self.plugin_base.PATH, "assets", "icons", self.stratagem_key + ".png"),
+            media_path=os.path.join(self.plugin_base.PATH, "assets", "icons", self.stratagem_key + ".svg"),
             size=1.00,
             valign=-1
         )
