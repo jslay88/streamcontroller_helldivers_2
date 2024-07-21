@@ -1,7 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126 126" fill="#fff">
-	<g fill="#de7b6c">
-		<path d="m44 20 3-10 7 7v13ZM31 55H16l-7-8 11.5-3.2Z"/>
-		<path d="M98 112 82 95H19L9 79l33.3-12.7L63 87h24V63L65.9 41.9 78 10l17 10v63l17 17 1 14Z"/>
-	</g>
-	<path d="M46 55v10l19 18h18V64L65 46H54V35L42 24l-3 14-14 5 11 12h10Z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 126 126"
+   fill="#fff"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="Eagle500kgBomb.svg"
+   inkscape:version="1.4-beta (f21c272752, 2024-04-22, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3" />
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="9.2539683"
+     inkscape:cx="63"
+     inkscape:cy="63"
+     inkscape:window-width="2560"
+     inkscape:window-height="1371"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3" />
+  <g
+     fill="#de7b6c"
+     id="g2">
+    <path
+       d="m44 20 3-10 7 7v13ZM31 55H16l-7-8 11.5-3.2Z"
+       id="path1"
+       style="fill:#d46052;fill-opacity:1.0" />
+    <path
+       d="M98 112 82 95H19L9 79l33.3-12.7L63 87h24V63L65.9 41.9 78 10l17 10v63l17 17 1 14Z"
+       id="path2"
+       style="fill:#d46052;fill-opacity:1.0" />
+  </g>
+  <path
+     d="M46 55v10l19 18h18V64L65 46H54V35L42 24l-3 14-14 5 11 12h10Z"
+     id="path3"
+     style="fill:#ffffff" />
 </svg>
