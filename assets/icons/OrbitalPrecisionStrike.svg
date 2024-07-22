@@ -1,5 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126 126" fill="#fff">
-	<path fill="#de7b6c" d="M94.5 93h15.3a53.7 53.7 0 0 1 7.2 27H99c-.4-11-2-19.9-4.5-27ZM74.2 67.2A54 54 0 0 1 107.9 90H93.4c-5.3-13-13-19.5-19.2-22.8ZM90.3 90H65V67a37 37 0 0 1 25.3 23Zm-54.8 3H62v27H31a85.5 85.5 0 0 1 4.5-27ZM62 67v23H36.7A37 37 0 0 1 62 67ZM33.6 90H18.1a54 54 0 0 1 35.3-23.1A42.4 42.4 0 0 0 33.6 90Zm-5.5 30H9a53.7 53.7 0 0 1 7.2-27h16.3c-2.4 7.1-4.1 16-4.4 27Zm67.5 43a54 54 0 0 1-65.2 0h65.2Zm-4-70a85.5 85.5 0 0 1 4.5 27H65V93h26.5Z"/>
-	<path d="M54 39V11H29l18 28h7ZM73 11h25L80 39h-7V11Z"/>
-	<path d="M59 11h9v33h9L64 64 50 44h9"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 126 126"
+   fill="#fff"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="OrbitalPrecisionStrike.svg"
+   inkscape:version="1.4-beta (f21c272752, 2024-04-22, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3" />
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="9.2539683"
+     inkscape:cx="62.945969"
+     inkscape:cy="63"
+     inkscape:window-width="2560"
+     inkscape:window-height="1371"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3" />
+  <path
+     fill="#de7b6c"
+     d="M94.5 93h15.3a53.7 53.7 0 0 1 7.2 27H99c-.4-11-2-19.9-4.5-27ZM74.2 67.2A54 54 0 0 1 107.9 90H93.4c-5.3-13-13-19.5-19.2-22.8ZM90.3 90H65V67a37 37 0 0 1 25.3 23Zm-54.8 3H62v27H31a85.5 85.5 0 0 1 4.5-27ZM62 67v23H36.7A37 37 0 0 1 62 67ZM33.6 90H18.1a54 54 0 0 1 35.3-23.1A42.4 42.4 0 0 0 33.6 90Zm-5.5 30H9a53.7 53.7 0 0 1 7.2-27h16.3c-2.4 7.1-4.1 16-4.4 27Zm67.5 43a54 54 0 0 1-65.2 0h65.2Zm-4-70a85.5 85.5 0 0 1 4.5 27H65V93h26.5Z"
+     id="path1"
+     style="fill:#d46052" />
+  <path
+     d="M59 11h9v33h9L64 64 50 44h9"
+     id="path3"
+     style="fill:#ffffff" />
+  <path
+     d="M54 39V11H29l18 28h7ZM73 11h25L80 39h-7V11Z"
+     id="path2"
+     style="fill:#ffffff" />
 </svg>
