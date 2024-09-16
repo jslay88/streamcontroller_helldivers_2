@@ -271,6 +271,11 @@
   "actions.OrbitalWalkingBarrage.labels.center": "",
   "actions.OrbitalWalkingBarrage.labels.bottom": "",
   
+  "actions.OrbitalWalkingBarrage.name": "Orbital Napalm Barrage",
+  "actions.OrbitalWalkingBarrage.labels.top": "",
+  "actions.OrbitalWalkingBarrage.labels.center": "",
+  "actions.OrbitalWalkingBarrage.labels.bottom": "",
+  
   "actions.OrbitalLaser.name": "Orbital Laser",
   "actions.OrbitalLaser.labels.top": "",
   "actions.OrbitalLaser.labels.center": "",
