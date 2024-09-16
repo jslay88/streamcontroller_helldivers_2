@@ -271,10 +271,10 @@
   "actions.OrbitalWalkingBarrage.labels.center": "",
   "actions.OrbitalWalkingBarrage.labels.bottom": "",
   
-  "actions.OrbitalWalkingBarrage.name": "Orbital Napalm Barrage",
-  "actions.OrbitalWalkingBarrage.labels.top": "",
-  "actions.OrbitalWalkingBarrage.labels.center": "",
-  "actions.OrbitalWalkingBarrage.labels.bottom": "",
+  "actions.OrbitalNapalmBarrage.name": "Orbital Napalm Barrage",
+  "actions.OrbitalNapalmBarrage.labels.top": "",
+  "actions.OrbitalNapalmBarrage.labels.center": "",
+  "actions.OrbitalNapalmBarrage.labels.bottom": "",
   
   "actions.OrbitalLaser.name": "Orbital Laser",
   "actions.OrbitalLaser.labels.top": "",
