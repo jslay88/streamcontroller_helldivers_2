@@ -51,6 +51,7 @@
   "OrbitalAirburstStrike": ["RIGHT", "RIGHT", "RIGHT"],
   "Orbital120MMHEBarrage": ["RIGHT", "RIGHT", "DOWN", "LEFT", "RIGHT", "DOWN"],
   "Orbital380MMHEBarrage": ["RIGHT", "DOWN", "UP", "UP", "LEFT", "DOWN", "DOWN"],
+  "OrbitalNapalmBarrage": ["RIGHT", "RIGHT", "DOWN", "LEFT", "RIGHT", "UP"],
   "OrbitalWalkingBarrage": ["RIGHT", "DOWN", "RIGHT", "DOWN", "RIGHT", "DOWN"],
   "OrbitalLaser": ["RIGHT", "DOWN", "UP", "RIGHT", "DOWN"],
   "OrbitalRailcannonStrike": ["RIGHT", "UP", "DOWN", "DOWN", "RIGHT"],
