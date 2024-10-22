@@ -211,6 +211,11 @@
   "actions.AntiPersonnelMinefield.labels.center": "",
   "actions.AntiPersonnelMinefield.labels.bottom": "",
   
+  "actions.Anti-TankMines.name": "Anti-Tank Mines",
+  "actions.Anti-TankMines.labels.top": "",
+  "actions.Anti-TankMines.labels.center": "",
+  "actions.Anti-TankMines.labels.bottom": "",
+  
   "actions.IncendiaryMines.name": "Incendiary Mines",
   "actions.IncendiaryMines.labels.top": "",
   "actions.IncendiaryMines.labels.center": "",

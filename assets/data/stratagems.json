@@ -40,6 +40,7 @@
   "ShieldGenerator": ["DOWN", "DOWN", "LEFT", "RIGHT", "LEFT", "RIGHT"],
   "TeslaTower": ["DOWN", "UP", "RIGHT", "UP", "LEFT", "RIGHT"],
   "AntiPersonnelMinefield": ["DOWN", "LEFT", "UP", "RIGHT"],
+  "Anti-TankMines": ["DOWN", "LEFT", "UP", "UP"],
   "IncendiaryMines": ["DOWN", "LEFT", "LEFT", "DOWN"],
   "MachineGunSentry": ["DOWN", "UP", "RIGHT", "RIGHT", "UP"],
   "GatlingSentry": ["DOWN", "UP", "RIGHT", "LEFT"],
