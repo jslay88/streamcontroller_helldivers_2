@@ -30,6 +30,11 @@
   "actions.BallisticShield.labels.top": "",
   "actions.BallisticShield.labels.center": "",
   "actions.BallisticShield.labels.bottom": "",
+
+  "actions.DirectionalShield.name": "Directional Shield",
+  "actions.DirectionalShield.labels.top": "",
+  "actions.DirectionalShield.labels.center": "",
+  "actions.DirectionalShield.labels.bottom": "",
   
   "actions.ShieldPack.name": "Shield Pack",
   "actions.ShieldPack.labels.top": "",
@@ -95,6 +100,11 @@
   "actions.SPEARLauncher.labels.top": "",
   "actions.SPEARLauncher.labels.center": "",
   "actions.SPEARLauncher.labels.bottom": "",
+
+  "actions.StA-X3WASPLauncher.name": "WASP Launcher",
+  "actions.StA-X3WASPLauncher.labels.top": "",
+  "actions.StA-X3WASPLauncher.labels.center": "",
+  "actions.StA-X3WASPLauncher.labels.bottom": "",
   
   "actions.GrenadeLauncher.name": "Grenade Launcher",
   "actions.GrenadeLauncher.labels.top": "",
@@ -135,6 +145,11 @@
   "actions.EmancipatorExosuit.labels.top": "",
   "actions.EmancipatorExosuit.labels.center": "",
   "actions.EmancipatorExosuit.labels.bottom": "",
+
+  "actions.FastReconVehicle.name": "Fast Reconnaissance Vehicle",
+  "actions.FastReconVehicle.labels.top": "",
+  "actions.FastReconVehicle.labels.center": "",
+  "actions.FastReconVehicle.labels.bottom": "",
   
   "actions.Reinforce.name": "Reinforce",
   "actions.Reinforce.labels.top": "",
@@ -205,6 +220,11 @@
   "actions.HMGEmplacement.labels.top": "",
   "actions.HMGEmplacement.labels.center": "",
   "actions.HMGEmplacement.labels.bottom": "",
+
+  "actions.Anti-TankEmplacement.name": "Anti-Tank Emplacement",
+  "actions.Anti-TankEmplacement.labels.top": "",
+  "actions.Anti-TankEmplacement.labels.center": "",
+  "actions.Anti-TankEmplacement.labels.bottom": "",
   
   "actions.ShieldGenerator.name": "Shield Generator",
   "actions.ShieldGenerator.labels.top": "",
@@ -260,6 +280,11 @@
   "actions.EMSMortarSentry.labels.top": "",
   "actions.EMSMortarSentry.labels.center": "",
   "actions.EMSMortarSentry.labels.bottom": "",
+
+  "actions.FlameSentry.name": "Flame Sentry",
+  "actions.FlameSentry.labels.top": "",
+  "actions.FlameSentry.labels.center": "",
+  "actions.FlameSentry.labels.bottom": "",
   
   "actions.OrbitalGatlingBarrage.name": "Orbital Gatling Barrage",
   "actions.OrbitalGatlingBarrage.labels.top": "",
