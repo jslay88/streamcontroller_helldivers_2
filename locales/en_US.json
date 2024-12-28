@@ -20,6 +20,11 @@
   "actions.GuardDogRover.labels.top": "",
   "actions.GuardDogRover.labels.center": "",
   "actions.GuardDogRover.labels.bottom": "",
+
+  "actions.GuardDogBreath.name": "\"Guard Dog\" Dog Breath",
+  "actions.GuardDogBreath.labels.top": "",
+  "actions.GuardDogBreath.labels.center": "",
+  "actions.GuardDogBreath.labels.bottom": "",
   
   "actions.BallisticShield.name": "Ballistic Shield",
   "actions.BallisticShield.labels.top": "",
@@ -65,6 +70,11 @@
   "actions.Flamethrower.labels.top": "",
   "actions.Flamethrower.labels.center": "",
   "actions.Flamethrower.labels.bottom": "",
+
+  "actions.Sterilizer.name": "Sterilizer",
+  "actions.Sterilizer.labels.top": "",
+  "actions.Sterilizer.labels.center": "",
+  "actions.Sterilizer.labels.bottom": "",
   
   "actions.Autocannon.name": "Autocannon",
   "actions.Autocannon.labels.top": "",
