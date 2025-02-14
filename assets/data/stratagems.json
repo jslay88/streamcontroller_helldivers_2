@@ -31,6 +31,7 @@
   "Reinforce": ["UP", "DOWN", "RIGHT", "LEFT", "UP"],
   "SOSBeacon": ["UP", "DOWN", "RIGHT", "UP"],
   "Resupply": ["DOWN", "DOWN", "UP", "RIGHT"],
+  "PortableHellbomb": ["DOWN", "RIGHT", "UP", "UP", "UP"],
   "Hellbomb": ["DOWN", "UP", "LEFT", "DOWN", "UP", "RIGHT", "DOWN", "UP"],
   "SSDDelivery": ["DOWN", "DOWN", "DOWN", "UP", "UP"],
   "ProspectingDrill": ["DOWN", "DOWN", "LEFT", "RIGHT", "DOWN", "DOWN"],

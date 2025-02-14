@@ -166,6 +166,11 @@
   "actions.Resupply.labels.center": "",
   "actions.Resupply.labels.bottom": "",
   
+  "actions.PortableHellbomb.name": "Portable Hellbomb",
+  "actions.PortableHellbomb.labels.top": "",
+  "actions.PortableHellbomb.labels.center": "",
+  "actions.PortableHellbomb.labels.bottom": "",
+  
   "actions.Hellbomb.name": "Hellbomb",
   "actions.Hellbomb.labels.top": "",
   "actions.Hellbomb.labels.center": "",
