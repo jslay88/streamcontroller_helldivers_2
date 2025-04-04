@@ -6,6 +6,11 @@
   "actions.StratagemHeroToggle.labels.center": "",
   "actions.StratagemHeroToggle.labels.bottom": "",
   
+  "actions.HoverPack.name": "Hover Pack",
+  "actions.HoverPack.labels.top": "",
+  "actions.HoverPack.labels.center": "",
+  "actions.HoverPack.labels.bottom": "",
+  
   "actions.JumpPack.name": "Jump Pack",
   "actions.JumpPack.labels.top": "",
   "actions.JumpPack.labels.center": "",
@@ -110,6 +115,11 @@
   "actions.GrenadeLauncher.labels.top": "",
   "actions.GrenadeLauncher.labels.center": "",
   "actions.GrenadeLauncher.labels.bottom": "",
+  
+  "actions.GrenadierBattlement.name": "Grenadier Battlement",
+  "actions.GrenadierBattlement.labels.top": "",
+  "actions.GrenadierBattlement.labels.center": "",
+  "actions.GrenadierBattlement.labels.bottom": "",
   
   "actions.LaserCannon.name": "Laser Cannon",
   "actions.LaserCannon.labels.top": "",
@@ -245,6 +255,11 @@
   "actions.AntiPersonnelMinefield.labels.top": "",
   "actions.AntiPersonnelMinefield.labels.center": "",
   "actions.AntiPersonnelMinefield.labels.bottom": "",
+  
+  "actions.GasMines.name": "Gas Mines",
+  "actions.GasMines.labels.top": "",
+  "actions.GasMines.labels.center": "",
+  "actions.GasMines.labels.bottom": "",
   
   "actions.Anti-TankMines.name": "Anti-Tank Mines",
   "actions.Anti-TankMines.labels.top": "",
