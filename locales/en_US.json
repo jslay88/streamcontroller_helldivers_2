@@ -16,6 +16,11 @@
   "actions.JumpPack.labels.center": "",
   "actions.JumpPack.labels.bottom": "",
   
+  "actions.WarpPack.name": "Warp Pack",
+  "actions.WarpPack.labels.top": "",
+  "actions.WarpPack.labels.center": "",
+  "actions.WarpPack.labels.bottom": "", 
+ 
   "actions.SupplyPack.name": "Supply Pack",
   "actions.SupplyPack.labels.top": "",
   "actions.SupplyPack.label.center": "",
@@ -25,7 +30,12 @@
   "actions.GuardDogRover.labels.top": "",
   "actions.GuardDogRover.labels.center": "",
   "actions.GuardDogRover.labels.bottom": "",
-
+  
+  "actions.GuardDogK-9.name": "\"Guard Dog\" K-9",
+  "actions.GuardDogK-9.labels.top": "",
+  "actions.GuardDogK-9.labels.center": "",
+  "actions.GuardDogK-9.labels.bottom": "",
+  
   "actions.GuardDogBreath.name": "\"Guard Dog\" Dog Breath",
   "actions.GuardDogBreath.labels.top": "",
   "actions.GuardDogBreath.labels.center": "",
@@ -116,6 +126,11 @@
   "actions.GrenadeLauncher.labels.center": "",
   "actions.GrenadeLauncher.labels.bottom": "",
   
+  "actions.GL-52De-Escalator.name": "GL-52 De-Escalator",
+  "actions.GL-52De-Escalator.labels.top": "",
+  "actions.GL-52De-Escalator.labels.center": "",
+  "actions.GL-52De-Escalator.labels.bottom": "",
+  
   "actions.GrenadierBattlement.name": "Grenadier Battlement",
   "actions.GrenadierBattlement.labels.top": "",
   "actions.GrenadierBattlement.labels.center": "",
@@ -135,6 +150,11 @@
   "actions.QuasarCannon.labels.top": "",
   "actions.QuasarCannon.labels.center": "",
   "actions.QuasarCannon.labels.bottom": "",
+  
+  "actions.Epoch.name": "PLAS-45 Epoch",
+  "actions.Epoch.labels.top": "",
+  "actions.Epoch.labels.center": "",
+  "actions.Epoch.labels.bottom": "",
   
   "actions.AirburstRocketLauncher.name": "Airburst Rocket Launcher",
   "actions.AirburstRocketLauncher.labels.top": "",
@@ -305,6 +325,11 @@
   "actions.FlameSentry.labels.top": "",
   "actions.FlameSentry.labels.center": "",
   "actions.FlameSentry.labels.bottom": "",
+  
+  "actions.LaserSentry.name": "Laser Sentry",
+  "actions.LaserSentry.labels.top": "",
+  "actions.LaserSentry.labels.center": "",
+  "actions.LaserSentry.labels.bottom": "",
   
   "actions.OrbitalGatlingBarrage.name": "Orbital Gatling Barrage",
   "actions.OrbitalGatlingBarrage.labels.top": "",
