@@ -81,6 +81,11 @@
   "actions.ExpendableAntiTank.labels.center": "",
   "actions.ExpendableAntiTank.labels.bottom": "",
   
+  "actions.ExpendableNapalm.name": "Expendable Napalm",
+  "actions.ExpendableNapalm.labels.top": "",
+  "actions.ExpendableNapalm.labels.center": "",
+  "actions.ExpendableNapalm.labels.bottom": "",
+  
   "actions.RecoillessRifle.name": "Recoilless Rifle",
   "actions.RecoillessRifle.labels.top": "",
   "actions.RecoillessRifle.labels.center": "",
@@ -110,6 +115,11 @@
   "actions.Railgun.labels.top": "",
   "actions.Railgun.labels.center": "",
   "actions.Railgun.labels.bottom": "",
+  
+  "actions.Speargun.name": "Speargun",
+  "actions.Speargun.labels.top": "",
+  "actions.Speargun.labels.center": "",
+  "actions.Speargun.labels.bottom": "",
   
   "actions.SPEARLauncher.name": "SPEAR Launcher",
   "actions.SPEARLauncher.labels.top": "",
@@ -330,6 +340,11 @@
   "actions.LaserSentry.labels.top": "",
   "actions.LaserSentry.labels.center": "",
   "actions.LaserSentry.labels.bottom": "",
+  
+  "actions.SoloSilo.name": "Solo Silo",
+  "actions.SoloSilo.labels.top": "",
+  "actions.SoloSilo.labels.center": "",
+  "actions.SoloSilo.labels.bottom": "",
   
   "actions.OrbitalGatlingBarrage.name": "Orbital Gatling Barrage",
   "actions.OrbitalGatlingBarrage.labels.top": "",
