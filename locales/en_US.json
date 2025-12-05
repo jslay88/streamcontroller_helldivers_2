@@ -20,6 +20,11 @@
   "actions.WarpPack.labels.top": "",
   "actions.WarpPack.labels.center": "",
   "actions.WarpPack.labels.bottom": "", 
+
+  "actions.Maxigun.name": "Maxigun",
+  "actions.Maxigun.labels.top": "",
+  "actions.Maxigun.labels.center": "",
+  "actions.Maxigun.labels.bottom": "",
  
   "actions.SupplyPack.name": "Supply Pack",
   "actions.SupplyPack.labels.top": "",
@@ -40,6 +45,11 @@
   "actions.GuardDogBreath.labels.top": "",
   "actions.GuardDogBreath.labels.center": "",
   "actions.GuardDogBreath.labels.bottom": "",
+
+  "actions.GuardDogHotDog.name": "\"Guard Dog\" Hot Dog",
+  "actions.GuardDogHotDog.labels.top": "",
+  "actions.GuardDogHotDog.labels.center": "",
+  "actions.GuardDogHotDog.labels.bottom": "",
   
   "actions.BallisticShield.name": "Ballistic Shield",
   "actions.BallisticShield.labels.top": "",
@@ -90,6 +100,11 @@
   "actions.RecoillessRifle.labels.top": "",
   "actions.RecoillessRifle.labels.center": "",
   "actions.RecoillessRifle.labels.bottom": "",
+
+  "actions.DefoliationTool.name": "Defoliation Tool",
+  "actions.DefoliationTool.labels.top": "",
+  "actions.DefoliationTool.labels.center": "",
+  "actions.DefoliationTool.labels.bottom": "",
   
   "actions.Flamethrower.name": "Flamethrower",
   "actions.Flamethrower.labels.top": "",
@@ -136,7 +151,7 @@
   "actions.GrenadeLauncher.labels.center": "",
   "actions.GrenadeLauncher.labels.bottom": "",
   
-  "actions.GL-52De-Escalator.name": "GL-52 De-Escalator",
+  "actions.GL-52De-Escalator.name": "De-Escalator",
   "actions.GL-52De-Escalator.labels.top": "",
   "actions.GL-52De-Escalator.labels.center": "",
   "actions.GL-52De-Escalator.labels.bottom": "",
@@ -161,7 +176,7 @@
   "actions.QuasarCannon.labels.center": "",
   "actions.QuasarCannon.labels.bottom": "",
   
-  "actions.Epoch.name": "PLAS-45 Epoch",
+  "actions.Epoch.name": "Epoch",
   "actions.Epoch.labels.top": "",
   "actions.Epoch.labels.center": "",
   "actions.Epoch.labels.bottom": "",
