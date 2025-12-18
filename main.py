@@ -262,24 +262,16 @@ class HellDiversPlugin(PluginBase):
         """Build and return the settings UI."""
         group = Adw.PreferencesGroup(
             title="Stratagem Settings",
-            description="Configure how stratagems are executed"
+            description="Configure how stratagems are executed and displayed"
         )
         
-        # Key Delay Setting
-        key_delay_row = self._create_key_delay_row()
-        group.add(key_delay_row)
+        # Execution settings
+        group.add(self._create_key_delay_row())
+        group.add(self._create_modifier_key_row())
+        group.add(self._create_hold_modifier_row())
         
-        # Modifier Key Setting
-        modifier_key_row = self._create_modifier_key_row()
-        group.add(modifier_key_row)
-        
-        # Hold Modifier Setting
-        hold_modifier_row = self._create_hold_modifier_row()
-        group.add(hold_modifier_row)
-        
-        # Show Labels Setting
-        show_labels_row = self._create_show_labels_row()
-        group.add(show_labels_row)
+        # Display settings
+        group.add(self._create_show_labels_row())
         
         return group
     
@@ -402,4 +394,3 @@ class HellDiversPlugin(PluginBase):
                             action.show()
                         except Exception as e:
                             log.debug(f"Failed to refresh action: {e}")
-

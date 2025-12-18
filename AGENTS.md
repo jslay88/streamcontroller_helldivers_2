@@ -141,7 +141,7 @@ The plugin has a settings page accessible via **Settings → Plugins → HELLDIV
 Settings are managed through StreamController's plugin settings system:
 
 1. `self.has_plugin_settings = True` enables the settings button
-2. `get_settings_area()` returns an `Adw.PreferencesGroup` with the UI
+2. `get_settings_area()` returns an `Adw.PreferencesGroup` with the settings UI
 3. `get_settings()` / `set_settings()` from `PluginBase` handle persistence
 4. Settings are stored in `data/settings/plugins/net_jslay_helldivers_2/settings.json`
 
@@ -291,4 +291,3 @@ The internal keys (e.g., `MachineGun`, `SOSBeacon`) are used as action IDs.
 When the game renames a stratagem:
 - Keep the old key
 - Update only the `wiki`, `svg`, and `name` fields
-
