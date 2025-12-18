@@ -12,6 +12,8 @@ Simply install the plugin from the StreamController store and configure your Str
 
 Access settings via **Settings → Plugins → HELLDIVERS 2 → ⚙️**
 
+![Plugin Settings](settings_screenshot.png)
+
 | Setting | Description | Default |
 |---------|-------------|---------|
 | **Key Delay** | Delay between key presses. Increase if stratagems fail to register. | 0.03s |
