@@ -8,6 +8,17 @@ Assumes the following:
 
 Simply install the plugin from the StreamController store and configure your Stream Deck buttons with your favorite stratagems.
 
+### Plugin Settings
+
+Access settings via **Settings → Plugins → HELLDIVERS 2 → ⚙️**
+
+| Setting | Description | Default |
+|---------|-------------|---------|
+| **Key Delay** | Delay between key presses. Increase if stratagems fail to register. | 0.03s |
+| **Modifier Key** | Key to open stratagem menu (Left/Right Ctrl, Alt, or Shift) | Left Ctrl |
+| **Hold Modifier Key** | Hold modifier during sequence vs press-and-release | ON |
+| **Show Labels** | Display text labels on buttons (OFF for icon-only look) | ON |
+
 ## For Developers
 
 ### Project Structure

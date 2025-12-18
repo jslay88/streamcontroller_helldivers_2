@@ -21,6 +21,7 @@ log.debug("Init HELLDIVERS 2")
 DEFAULT_KEY_DELAY = 0.03
 DEFAULT_MODIFIER_KEY = "KEY_LEFTCTRL"
 DEFAULT_HOLD_MODIFIER = True  # False = press/release, True = hold during sequence
+DEFAULT_SHOW_LABELS = True  # Show text labels on buttons
 
 # Available modifier keys
 MODIFIER_KEYS = {
@@ -51,9 +52,14 @@ class StratagemHeroButton(KeyAction):
         pass
 
     def show(self):
-        self.set_top_label(self.plugin_base.lm.get("actions.StratagemHeroToggle.labels.top", ""))
-        self.set_center_label(self.plugin_base.lm.get("actions.StratagemHeroToggle.labels.center", "Stratagem"))
-        self.set_bottom_label(self.plugin_base.lm.get("actions.StratagemHeroToggle.labels.bottom", "Hero"))
+        if self.plugin_base.get_show_labels():
+            self.set_top_label(self.plugin_base.lm.get("actions.StratagemHeroToggle.labels.top", ""))
+            self.set_center_label(self.plugin_base.lm.get("actions.StratagemHeroToggle.labels.center", "Stratagem"))
+            self.set_bottom_label(self.plugin_base.lm.get("actions.StratagemHeroToggle.labels.bottom", "Hero"))
+        else:
+            self.set_top_label("")
+            self.set_center_label("")
+            self.set_bottom_label("")
 
         fname = "hero_off.png"
         if self.plugin_base.hero_mode:
@@ -75,9 +81,14 @@ class StratagemButton(KeyAction):
             self.stratagem = []  # Empty sequence to prevent crashes
 
     def show(self):
-        self.set_top_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.labels.top", ""))
-        self.set_center_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.labels.center", ""))
-        self.set_bottom_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.labels.bottom", self.plugin_base.lm.get(f"actions.{self.stratagem_key}.name")))
+        if self.plugin_base.get_show_labels():
+            self.set_top_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.labels.top", ""))
+            self.set_center_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.labels.center", ""))
+            self.set_bottom_label(self.plugin_base.lm.get(f"actions.{self.stratagem_key}.labels.bottom", self.plugin_base.lm.get(f"actions.{self.stratagem_key}.name")))
+        else:
+            self.set_top_label("")
+            self.set_center_label("")
+            self.set_bottom_label("")
         self.set_media(
             media_path=os.path.join(self.plugin_base.PATH, "assets", "icons", self.stratagem_key + ".png")
         )
@@ -234,6 +245,11 @@ class HellDiversPlugin(PluginBase):
         settings = self.get_settings()
         return settings.get("hold_modifier", DEFAULT_HOLD_MODIFIER)
     
+    def get_show_labels(self) -> bool:
+        """Get whether to show labels on buttons."""
+        settings = self.get_settings()
+        return settings.get("show_labels", DEFAULT_SHOW_LABELS)
+    
     def _save_setting(self, key: str, value):
         """Save a single setting."""
         settings = self.get_settings()
@@ -260,6 +276,10 @@ class HellDiversPlugin(PluginBase):
         # Hold Modifier Setting
         hold_modifier_row = self._create_hold_modifier_row()
         group.add(hold_modifier_row)
+        
+        # Show Labels Setting
+        show_labels_row = self._create_show_labels_row()
+        group.add(show_labels_row)
         
         return group
     
@@ -343,4 +363,43 @@ class HellDiversPlugin(PluginBase):
     def _on_hold_modifier_changed(self, row, _):
         """Handle hold modifier switch change."""
         self._save_setting("hold_modifier", row.get_active())
+    
+    def _create_show_labels_row(self) -> Adw.SwitchRow:
+        """Create the show labels switch row."""
+        row = Adw.SwitchRow(
+            title="Show Labels",
+            subtitle="Display text labels on stratagem buttons"
+        )
         
+        row.set_active(self.get_show_labels())
+        row.connect("notify::active", self._on_show_labels_changed)
+        return row
+    
+    def _on_show_labels_changed(self, row, _):
+        """Handle show labels switch change."""
+        self._save_setting("show_labels", row.get_active())
+        # Refresh all action displays
+        self._refresh_all_actions()
+    
+    def _refresh_all_actions(self):
+        """Refresh all action buttons to apply label visibility changes."""
+        import globals as gl
+        
+        if not hasattr(gl, 'deck_manager') or gl.deck_manager is None:
+            return
+        
+        # Iterate through all deck controllers
+        for deck_controller in gl.deck_manager.deck_controller:
+            if deck_controller.active_page is None:
+                continue
+            
+            # Get all actions on the active page
+            for action in deck_controller.active_page.get_all_actions():
+                # Check if this action belongs to our plugin
+                if hasattr(action, 'plugin_base') and action.plugin_base is self:
+                    if hasattr(action, 'show'):
+                        try:
+                            action.show()
+                        except Exception as e:
+                            log.debug(f"Failed to refresh action: {e}")
+
