@@ -1,67 +1,674 @@
 {
-  "JumpPack": ["DOWN", "UP", "UP", "DOWN", "UP"],
-  "SupplyPack": ["DOWN", "LEFT", "DOWN", "UP", "UP", "DOWN"],
-  "GuardDogRover": ["DOWN", "UP", "LEFT", "UP", "RIGHT", "RIGHT"],
-  "BallisticShield": ["DOWN", "LEFT", "DOWN", "DOWN", "UP", "LEFT"],
-  "ShieldPack": ["DOWN", "UP", "LEFT", "RIGHT", "LEFT", "RIGHT"],
-  "GuardDog": ["DOWN", "UP", "LEFT", "UP", "RIGHT", "DOWN"],
-  "MachineGun": ["DOWN", "LEFT", "DOWN", "UP", "RIGHT"],
-  "AntiMaterialRifle": ["DOWN", "LEFT", "RIGHT", "UP", "DOWN"],
-  "Stalwart": ["DOWN", "LEFT", "DOWN", "UP", "UP", "LEFT"],
-  "ExpendableAntiTank": ["DOWN", "DOWN", "LEFT", "UP", "RIGHT"],
-  "RecoillessRifle": ["DOWN", "LEFT", "RIGHT", "RIGHT", "LEFT"],
-  "Flamethrower": ["DOWN", "LEFT", "UP", "DOWN", "UP"],
-  "Autocannon": ["DOWN", "LEFT", "DOWN", "UP", "UP", "RIGHT"],
-  "HeavyMachineGun": ["DOWN", "LEFT", "UP", "DOWN", "DOWN"],
-  "Railgun": ["DOWN", "RIGHT", "DOWN", "UP", "LEFT","RIGHT"],
-  "SPEARLauncher": ["DOWN", "DOWN", "UP", "DOWN", "DOWN"],
-  "GrenadeLauncher": ["DOWN", "LEFT", "UP", "LEFT", "DOWN"],
-  "LaserCannon": ["DOWN", "LEFT", "DOWN", "UP", "LEFT"],
-  "ArcThrower": ["DOWN", "RIGHT", "DOWN", "UP", "LEFT", "LEFT"],
-  "QuasarCannon": ["DOWN", "DOWN", "UP", "LEFT", "RIGHT"],
-  "AirburstRocketLauncher": ["DOWN", "UP", "UP", "LEFT", "RIGHT"],
-  "PatriotExosuit": ["LEFT", "DOWN", "RIGHT", "UP", "LEFT", "DOWN", "DOWN"],
-  "EmancipatorExosuit": ["LEFT", "DOWN", "RIGHT", "UP", "LEFT", "DOWN", "UP"],
-  "Reinforce": ["UP", "DOWN", "RIGHT", "LEFT", "UP"],
-  "SOSBeacon": ["UP", "DOWN", "RIGHT", "UP"],
-  "Resupply": ["DOWN", "DOWN", "UP", "RIGHT"],
-  "Hellbomb": ["DOWN", "UP", "LEFT", "DOWN", "UP", "RIGHT", "DOWN", "UP"],
-  "SSDDelivery": ["DOWN", "DOWN", "DOWN", "UP", "UP"],
-  "ProspectingDrill": ["DOWN", "DOWN", "LEFT", "RIGHT", "DOWN", "DOWN"],
-  "HiveBreakerDrill": ["LEFT", "UP", "DOWN", "RIGHT", "DOWN", "DOWN"],
-  "SeismicProbe": ["UP", "UP", "LEFT", "RIGHT", "DOWN", "DOWN"],
-  "UploadData": ["LEFT", "RIGHT", "UP", "UP", "UP"],
-  "EagleRearm": ["UP", "UP", "LEFT", "UP", "RIGHT"],
-  "IlluminationFlare": ["RIGHT", "RIGHT", "LEFT", "LEFT"],
-  "SEAFArtillery": ["RIGHT", "UP", "UP", "DOWN"],
-  "SuperEarthFlag": ["DOWN", "UP", "DOWN", "UP"],
-  "HMGEmplacement": ["DOWN", "UP", "LEFT", "RIGHT", "RIGHT", "LEFT"],
-  "ShieldGenerator": ["DOWN", "DOWN", "LEFT", "RIGHT", "LEFT", "RIGHT"],
-  "TeslaTower": ["DOWN", "UP", "RIGHT", "UP", "LEFT", "RIGHT"],
-  "AntiPersonnelMinefield": ["DOWN", "LEFT", "UP", "RIGHT"],
-  "IncendiaryMines": ["DOWN", "LEFT", "LEFT", "DOWN"],
-  "MachineGunSentry": ["DOWN", "UP", "RIGHT", "RIGHT", "UP"],
-  "GatlingSentry": ["DOWN", "UP", "RIGHT", "LEFT"],
-  "MortarSentry": ["DOWN", "UP", "RIGHT", "RIGHT", "DOWN"],
-  "AutocannonSentry": ["DOWN", "UP", "RIGHT", "UP", "LEFT", "UP"],
-  "RocketSentry": ["DOWN", "UP", "RIGHT", "RIGHT", "LEFT"],
-  "EMSMortarSentry": ["DOWN", "UP", "RIGHT", "DOWN", "RIGHT"],
-  "OrbitalGatlingBarrage": ["RIGHT", "DOWN", "LEFT", "UP", "UP"],
-  "OrbitalAirburstStrike": ["RIGHT", "RIGHT", "RIGHT"],
-  "Orbital120MMHEBarrage": ["RIGHT", "RIGHT", "DOWN", "LEFT", "RIGHT", "DOWN"],
-  "Orbital380MMHEBarrage": ["RIGHT", "DOWN", "UP", "UP", "LEFT", "DOWN", "DOWN"],
-  "OrbitalWalkingBarrage": ["RIGHT", "DOWN", "RIGHT", "DOWN", "RIGHT", "DOWN"],
-  "OrbitalLaser": ["RIGHT", "DOWN", "UP", "RIGHT", "DOWN"],
-  "OrbitalRailcannonStrike": ["RIGHT", "UP", "DOWN", "DOWN", "RIGHT"],
-  "OrbitalPrecisionStrike": ["RIGHT", "RIGHT", "UP"],
-  "OrbitalGasStrike": ["RIGHT", "RIGHT","DOWN", "RIGHT"],
-  "OrbitalEMSStrike": ["RIGHT", "RIGHT", "LEFT", "DOWN"],
-  "OrbitalSmokeStrike": ["RIGHT", "RIGHT", "DOWN", "UP"],
-  "EagleStrafingRun": ["UP", "RIGHT", "RIGHT"],
-  "EagleAirstrike": ["UP", "RIGHT", "DOWN", "RIGHT"],
-  "EagleClusterBomb": ["UP", "RIGHT", "DOWN", "DOWN", "RIGHT"],
-  "EagleNapalmAirstrike": ["UP", "RIGHT", "DOWN", "UP"],
-  "EagleSmokeStrike": ["UP", "RIGHT", "UP", "DOWN"],
-  "Eagle110MMRocketPods": ["UP", "RIGHT", "UP", "LEFT"],
-  "Eagle500kgBomb": ["UP", "RIGHT", "DOWN", "DOWN", "DOWN"]
+  "AirburstRocketLauncher": [
+    "DOWN",
+    "UP",
+    "UP",
+    "LEFT",
+    "RIGHT"
+  ],
+  "AntiMaterialRifle": [
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "UP",
+    "DOWN"
+  ],
+  "AntiPersonnelMinefield": [
+    "DOWN",
+    "LEFT",
+    "UP",
+    "RIGHT"
+  ],
+  "AntiTankEmplacement": [
+    "DOWN",
+    "UP",
+    "LEFT",
+    "RIGHT",
+    "RIGHT",
+    "RIGHT"
+  ],
+  "AntiTankMines": [
+    "DOWN",
+    "LEFT",
+    "UP",
+    "UP"
+  ],
+  "ArcThrower": [
+    "DOWN",
+    "RIGHT",
+    "DOWN",
+    "UP",
+    "LEFT",
+    "LEFT"
+  ],
+  "Autocannon": [
+    "DOWN",
+    "LEFT",
+    "DOWN",
+    "UP",
+    "UP",
+    "RIGHT"
+  ],
+  "AutocannonSentry": [
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "UP",
+    "LEFT",
+    "UP"
+  ],
+  "BallisticShield": [
+    "DOWN",
+    "LEFT",
+    "DOWN",
+    "DOWN",
+    "UP",
+    "LEFT"
+  ],
+  "CargoContainer": [
+    "UP",
+    "UP",
+    "DOWN",
+    "DOWN",
+    "RIGHT",
+    "DOWN"
+  ],
+  "Commando": [
+    "DOWN",
+    "LEFT",
+    "UP",
+    "DOWN",
+    "RIGHT"
+  ],
+  "DarkFluidVessel": [
+    "UP",
+    "LEFT",
+    "RIGHT",
+    "DOWN",
+    "UP",
+    "UP"
+  ],
+  "DefoliationTool": [
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "RIGHT",
+    "DOWN"
+  ],
+  "DirectionalShield": [
+    "DOWN",
+    "UP",
+    "LEFT",
+    "RIGHT",
+    "UP",
+    "UP"
+  ],
+  "EMSMortarSentry": [
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "DOWN",
+    "RIGHT"
+  ],
+  "Eagle110MMRocketPods": [
+    "UP",
+    "RIGHT",
+    "UP",
+    "LEFT"
+  ],
+  "Eagle500kgBomb": [
+    "UP",
+    "RIGHT",
+    "DOWN",
+    "DOWN",
+    "DOWN"
+  ],
+  "EagleAirstrike": [
+    "UP",
+    "RIGHT",
+    "DOWN",
+    "RIGHT"
+  ],
+  "EagleClusterBomb": [
+    "UP",
+    "RIGHT",
+    "DOWN",
+    "DOWN",
+    "RIGHT"
+  ],
+  "EagleNapalmAirstrike": [
+    "UP",
+    "RIGHT",
+    "DOWN",
+    "UP"
+  ],
+  "EagleRearm": [
+    "UP",
+    "UP",
+    "LEFT",
+    "UP",
+    "RIGHT"
+  ],
+  "EagleSmokeStrike": [
+    "UP",
+    "RIGHT",
+    "UP",
+    "DOWN"
+  ],
+  "EagleStrafingRun": [
+    "UP",
+    "RIGHT",
+    "RIGHT"
+  ],
+  "EmancipatorExosuit": [
+    "LEFT",
+    "DOWN",
+    "RIGHT",
+    "UP",
+    "LEFT",
+    "DOWN",
+    "UP"
+  ],
+  "Epoch": [
+    "DOWN",
+    "LEFT",
+    "UP",
+    "LEFT",
+    "RIGHT"
+  ],
+  "ExpendableAntiTank": [
+    "DOWN",
+    "DOWN",
+    "LEFT",
+    "UP",
+    "RIGHT"
+  ],
+  "ExpendableNapalm": [
+    "DOWN",
+    "DOWN",
+    "LEFT",
+    "UP",
+    "LEFT"
+  ],
+  "FastReconVehicle": [
+    "LEFT",
+    "DOWN",
+    "RIGHT",
+    "DOWN",
+    "RIGHT",
+    "DOWN",
+    "UP"
+  ],
+  "FlameSentry": [
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "DOWN",
+    "UP",
+    "UP"
+  ],
+  "Flamethrower": [
+    "DOWN",
+    "LEFT",
+    "UP",
+    "DOWN",
+    "UP"
+  ],
+  "GL52DeEscalator": [
+    "DOWN",
+    "RIGHT",
+    "UP",
+    "LEFT",
+    "RIGHT"
+  ],
+  "GasMine": [
+    "DOWN",
+    "LEFT",
+    "LEFT",
+    "RIGHT"
+  ],
+  "GatlingSentry": [
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "LEFT"
+  ],
+  "GrenadeLauncher": [
+    "DOWN",
+    "LEFT",
+    "UP",
+    "LEFT",
+    "DOWN"
+  ],
+  "GrenadierBattlement": [
+    "DOWN",
+    "RIGHT",
+    "DOWN",
+    "LEFT",
+    "RIGHT"
+  ],
+  "GuardDog": [
+    "DOWN",
+    "UP",
+    "LEFT",
+    "UP",
+    "RIGHT",
+    "DOWN"
+  ],
+  "GuardDogBreath": [
+    "DOWN",
+    "UP",
+    "LEFT",
+    "UP",
+    "RIGHT",
+    "UP"
+  ],
+  "GuardDogHotDog": [
+    "DOWN",
+    "UP",
+    "LEFT",
+    "UP",
+    "LEFT",
+    "LEFT"
+  ],
+  "GuardDogK9": [
+    "DOWN",
+    "UP",
+    "LEFT",
+    "UP",
+    "RIGHT",
+    "LEFT"
+  ],
+  "GuardDogRover": [
+    "DOWN",
+    "UP",
+    "LEFT",
+    "UP",
+    "RIGHT",
+    "RIGHT"
+  ],
+  "HMGEmplacement": [
+    "DOWN",
+    "UP",
+    "LEFT",
+    "RIGHT",
+    "RIGHT",
+    "LEFT"
+  ],
+  "HeavyMachineGun": [
+    "DOWN",
+    "LEFT",
+    "UP",
+    "DOWN",
+    "DOWN"
+  ],
+  "Hellbomb": [
+    "DOWN",
+    "UP",
+    "LEFT",
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "DOWN",
+    "UP"
+  ],
+  "HellbombPortable": [
+    "DOWN",
+    "RIGHT",
+    "UP",
+    "UP",
+    "UP"
+  ],
+  "HiveBreakerDrill": [
+    "LEFT",
+    "UP",
+    "DOWN",
+    "RIGHT",
+    "DOWN",
+    "DOWN"
+  ],
+  "HoverPack": [
+    "DOWN",
+    "UP",
+    "UP",
+    "DOWN",
+    "LEFT",
+    "RIGHT"
+  ],
+  "IlluminationFlare": [
+    "RIGHT",
+    "RIGHT",
+    "LEFT",
+    "LEFT"
+  ],
+  "IncendiaryMines": [
+    "DOWN",
+    "LEFT",
+    "LEFT",
+    "DOWN"
+  ],
+  "JumpPack": [
+    "DOWN",
+    "UP",
+    "UP",
+    "DOWN",
+    "UP"
+  ],
+  "LaserCannon": [
+    "DOWN",
+    "LEFT",
+    "DOWN",
+    "UP",
+    "LEFT"
+  ],
+  "LaserSentry": [
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "DOWN",
+    "UP",
+    "RIGHT"
+  ],
+  "MachineGun": [
+    "DOWN",
+    "LEFT",
+    "DOWN",
+    "UP",
+    "RIGHT"
+  ],
+  "MachineGunSentry": [
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "RIGHT",
+    "UP"
+  ],
+  "Maxigun": [
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "DOWN",
+    "UP",
+    "UP"
+  ],
+  "MortarSentry": [
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "RIGHT",
+    "DOWN"
+  ],
+  "OneTrueFlag": [
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "RIGHT",
+    "UP"
+  ],
+  "Orbital120MMHEBarrage": [
+    "RIGHT",
+    "RIGHT",
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "DOWN"
+  ],
+  "Orbital380MMHEBarrage": [
+    "RIGHT",
+    "DOWN",
+    "UP",
+    "UP",
+    "LEFT",
+    "DOWN",
+    "DOWN"
+  ],
+  "OrbitalAirburstStrike": [
+    "RIGHT",
+    "RIGHT",
+    "RIGHT"
+  ],
+  "OrbitalEMSStrike": [
+    "RIGHT",
+    "RIGHT",
+    "LEFT",
+    "DOWN"
+  ],
+  "OrbitalGasStrike": [
+    "RIGHT",
+    "RIGHT",
+    "DOWN",
+    "RIGHT"
+  ],
+  "OrbitalGatlingBarrage": [
+    "RIGHT",
+    "DOWN",
+    "LEFT",
+    "UP",
+    "UP"
+  ],
+  "OrbitalLaser": [
+    "RIGHT",
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "DOWN"
+  ],
+  "OrbitalNapalmBarrage": [
+    "RIGHT",
+    "RIGHT",
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "UP"
+  ],
+  "OrbitalPrecisionStrike": [
+    "RIGHT",
+    "RIGHT",
+    "UP"
+  ],
+  "OrbitalRailcannonStrike": [
+    "RIGHT",
+    "UP",
+    "DOWN",
+    "DOWN",
+    "RIGHT"
+  ],
+  "OrbitalSmokeStrike": [
+    "RIGHT",
+    "RIGHT",
+    "DOWN",
+    "UP"
+  ],
+  "OrbitalWalkingBarrage": [
+    "RIGHT",
+    "DOWN",
+    "RIGHT",
+    "DOWN",
+    "RIGHT",
+    "DOWN"
+  ],
+  "PatriotExosuit": [
+    "LEFT",
+    "DOWN",
+    "RIGHT",
+    "UP",
+    "LEFT",
+    "DOWN",
+    "DOWN"
+  ],
+  "ProspectingDrill": [
+    "DOWN",
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "DOWN",
+    "DOWN"
+  ],
+  "QuasarCannon": [
+    "DOWN",
+    "DOWN",
+    "UP",
+    "LEFT",
+    "RIGHT"
+  ],
+  "Railgun": [
+    "DOWN",
+    "RIGHT",
+    "DOWN",
+    "UP",
+    "LEFT",
+    "RIGHT"
+  ],
+  "RecoillessRifle": [
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "RIGHT",
+    "LEFT"
+  ],
+  "Reinforce": [
+    "UP",
+    "DOWN",
+    "RIGHT",
+    "LEFT",
+    "UP"
+  ],
+  "Resupply": [
+    "DOWN",
+    "DOWN",
+    "UP",
+    "RIGHT"
+  ],
+  "RocketSentry": [
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "RIGHT",
+    "LEFT"
+  ],
+  "SEAFArtillery": [
+    "RIGHT",
+    "UP",
+    "UP",
+    "DOWN"
+  ],
+  "SOSBeacon": [
+    "UP",
+    "DOWN",
+    "RIGHT",
+    "UP"
+  ],
+  "SPEARLauncher": [
+    "DOWN",
+    "DOWN",
+    "UP",
+    "DOWN",
+    "DOWN"
+  ],
+  "SSDDelivery": [
+    "DOWN",
+    "DOWN",
+    "DOWN",
+    "UP",
+    "UP"
+  ],
+  "SeismicProbe": [
+    "UP",
+    "UP",
+    "LEFT",
+    "RIGHT",
+    "DOWN",
+    "DOWN"
+  ],
+  "ShieldGenerator": [
+    "DOWN",
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "LEFT",
+    "RIGHT"
+  ],
+  "ShieldPack": [
+    "DOWN",
+    "UP",
+    "LEFT",
+    "RIGHT",
+    "LEFT",
+    "RIGHT"
+  ],
+  "SoloSilo": [
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "DOWN",
+    "DOWN"
+  ],
+  "Speargun": [
+    "DOWN",
+    "RIGHT",
+    "DOWN",
+    "LEFT",
+    "UP",
+    "RIGHT"
+  ],
+  "Stalwart": [
+    "DOWN",
+    "LEFT",
+    "DOWN",
+    "UP",
+    "UP",
+    "LEFT"
+  ],
+  "SuperEarthFlag": [
+    "DOWN",
+    "UP",
+    "DOWN",
+    "UP"
+  ],
+  "SupplyPack": [
+    "DOWN",
+    "LEFT",
+    "DOWN",
+    "UP",
+    "UP",
+    "DOWN"
+  ],
+  "TectonicDrill": [
+    "UP",
+    "DOWN",
+    "UP",
+    "DOWN",
+    "UP",
+    "DOWN"
+  ],
+  "TeslaTower": [
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "UP",
+    "LEFT",
+    "RIGHT"
+  ],
+  "UploadData": [
+    "LEFT",
+    "RIGHT",
+    "UP",
+    "UP",
+    "UP"
+  ],
+  "WASPLauncher": [
+    "DOWN",
+    "DOWN",
+    "UP",
+    "DOWN",
+    "RIGHT"
+  ],
+  "WarpPack": [
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "DOWN",
+    "LEFT",
+    "RIGHT"
+  ]
 }

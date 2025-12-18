@@ -1,0 +1,8 @@
+# Requirements for the update module
+# Install with: pip install -r update/requirements.txt
+
+beautifulsoup4>=4.12.0
+cairosvg>=2.7.0
+pillow>=10.0.0
+requests>=2.31.0
+
