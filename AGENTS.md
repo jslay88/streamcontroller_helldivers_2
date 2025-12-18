@@ -264,15 +264,21 @@ Each page contains:
 
 ## Running the Update Module
 
+First-time setup:
+
 ```bash
 cd /path/to/net_jslay_helldivers_2
+python -m venv .venv
+source .venv/bin/activate
+pip install -r update/requirements.txt
+```
 
-# Set PYTHONPATH to include venv site-packages and plugin directory
-PYTHONPATH=/path/to/venv/lib/python3.x/site-packages:. python -m update [command]
+Running commands:
 
-# Or activate venv first (if it works correctly)
-source /path/to/venv/bin/activate
-PYTHONPATH=. python -m update [command]
+```bash
+cd /path/to/net_jslay_helldivers_2
+source .venv/bin/activate
+python -m update [command]
 ```
 
 ## Dependencies
@@ -282,6 +288,8 @@ See `update/requirements.txt`:
 - `cairosvg` - SVG to PNG conversion
 - `pillow` - Image manipulation for borders
 - `requests` - HTTP requests
+
+The `.venv` directory is in `.gitignore`.
 
 ## Backward Compatibility
 

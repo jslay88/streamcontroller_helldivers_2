@@ -49,10 +49,23 @@ The `update/` module automates asset generation. It scrapes stratagem data from 
 
 #### Setup
 
+Create a virtual environment and install dependencies:
+
 ```bash
-# From the plugin directory
+cd /path/to/net_jslay_helldivers_2
+
+# Create virtual environment
+python -m venv .venv
+
+# Activate it
+source .venv/bin/activate  # Linux/macOS
+# .venv\Scripts\activate   # Windows
+
+# Install dependencies
 pip install -r update/requirements.txt
 ```
+
+> **Note**: The `.venv` directory is already in `.gitignore`.
 
 #### Workflow: Adding New Stratagems
 
@@ -62,7 +75,8 @@ When new stratagems are added to the game:
 
 ```bash
 cd /path/to/net_jslay_helldivers_2
-PYTHONPATH=/path/to/venv/lib/python3.x/site-packages:. python -m update discover
+source .venv/bin/activate
+python -m update discover
 ```
 
 This compares wiki.gg and the SVG repository against `config.py` and shows:
