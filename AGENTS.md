@@ -40,9 +40,11 @@ These files are **generated** from `config.py` - do not edit manually:
 
 ```
 main.py             # Plugin entry point
-├── StratagemHeroButton  # Toggles "Hero mode" (no modifier key needed)
-├── StratagemButton      # Executes stratagem sequences via UInput
-└── HellDiversPlugin     # Plugin base with settings UI
+├── StratagemHeroButton    # Toggles "Hero mode" (no modifier key needed)
+├── StratagemButton        # Executes stratagem sequences via UInput
+├── CustomStratagemButton  # User-defined custom stratagem with configurable sequence
+├── SequenceEditorRow      # GTK widget for editing custom sequences
+└── HellDiversPlugin       # Plugin base with settings UI
 ```
 
 ### Update Module Structure
@@ -290,6 +292,48 @@ See `update/requirements.txt`:
 - `requests` - HTTP requests
 
 The `.venv` directory is in `.gitignore`.
+
+## Custom Stratagems
+
+Users can create custom stratagem buttons for stratagems not yet in the plugin's mapping.
+
+### How It Works
+
+1. Add the **Custom Stratagem** action to a Stream Deck button
+2. Click the button to open its configuration panel
+3. Configure:
+   - **Stratagem Name**: Internal name for the stratagem
+   - **Top/Center/Bottom Labels**: Text displayed on the button
+   - **Key Sequence**: Build the sequence using the direction buttons (↑ ↓ ← →)
+
+### Custom Stratagem Settings
+
+Each custom stratagem stores its settings per-button in the page JSON:
+
+```json
+{
+  "name": "My Custom Stratagem",
+  "labels": {
+    "top": "",
+    "center": "My Custom",
+    "bottom": "Stratagem"
+  },
+  "sequence": ["UP", "DOWN", "LEFT", "RIGHT"]
+}
+```
+
+### Implementation Details
+
+- `CustomStratagemButton` extends `KeyAction` with `has_configuration = True`
+- `get_config_rows()` returns the configuration UI rows
+- `SequenceEditorRow` provides the visual sequence builder with direction buttons
+- Settings are stored per-action using `self.get_settings()` / `self.set_settings()`
+- Uses the same execution logic as `StratagemButton` (modifier key handling, key delay, etc.)
+
+### Default Icon
+
+Custom stratagems use `assets/icons/custom.png` - a gold "?" icon matching the plugin's style.
+Users can eventually set custom icons via the icon_path setting (future enhancement).
 
 ## Backward Compatibility
 
