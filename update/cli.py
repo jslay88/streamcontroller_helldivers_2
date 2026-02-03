@@ -18,7 +18,7 @@ Commands:
     
 Workflow:
     1. Run `discover` to find new stratagems
-    2. Add suggested mappings to scripts/config.py
+    2. Add suggested mappings to update/config.py
     3. Run `generate-all` to create all assets
 """
 
@@ -432,8 +432,8 @@ def cmd_discover(args):
     print(f"  SVG icons:         {len(svg_names)} ({len(new_svgs)} unmapped)")
     
     if new_on_wiki or new_svgs:
-        print("\n💡 TIP: Copy the suggested mappings above to scripts/config.py")
-        print("   then run `python -m scripts generate-all` to generate assets.")
+        print("\n💡 TIP: Copy the suggested mappings above to update/config.py")
+        print("   then run `python -m update generate-all` to generate assets.")
         return 1
     
     return 0
@@ -532,4 +532,3 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
-
