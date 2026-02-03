@@ -110,6 +110,12 @@ def generate_locale_entries(keys: list[str] = None) -> dict:
         "actions.StratagemHeroToggle.labels.top": "",
         "actions.StratagemHeroToggle.labels.center": "Stratagem",
         "actions.StratagemHeroToggle.labels.bottom": "Hero",
+        "actions.CustomStratagem.name": "Custom Stratagem",
+        "actions.CustomStratagem.config.name": "Stratagem Name",
+        "actions.CustomStratagem.config.top_label": "Top Label",
+        "actions.CustomStratagem.config.center_label": "Center Label",
+        "actions.CustomStratagem.config.bottom_label": "Bottom Label",
+        "actions.CustomStratagem.config.sequence": "Key Sequence",
     }
     
     for key in sorted(keys):

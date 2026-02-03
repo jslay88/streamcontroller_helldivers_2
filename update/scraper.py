@@ -24,7 +24,7 @@ try:
 except ImportError:
     HAS_REQUESTS = False
 
-from .config import WIKI_TO_KEY_MAPPINGS, LEGACY_KEYS, STRATAGEMS_JSON
+from .config import STRATAGEM_MAPPINGS, WIKI_TO_KEY_MAPPINGS, LEGACY_KEYS, STRATAGEMS_JSON
 
 
 # Wiki URL (HTML – may be behind Cloudflare)
@@ -328,6 +328,10 @@ def scrape_and_save(
         # New data takes precedence
         existing.update(stratagems)
         stratagems = existing
+    
+    # Keep only keys that are in STRATAGEM_MAPPINGS (config). This drops stale
+    # keys like BmdC4Pack when the config uses C4Pack with wiki "B/MD C4 Pack".
+    stratagems = {k: v for k, v in stratagems.items() if k in STRATAGEM_MAPPINGS}
     
     # Sort by name
     stratagems = dict(sorted(stratagems.items()))
