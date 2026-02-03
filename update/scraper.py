@@ -2,11 +2,14 @@
 Scrape stratagem data from the Helldivers 2 wiki.
 
 Fetches stratagem names and arrow codes from wiki.gg.
+Uses the MediaWiki API (reliable) with HTML scraping as fallback when the
+wiki HTML is behind Cloudflare and often returns a challenge page.
 """
 
 import json
 import re
 import subprocess
+import time
 from pathlib import Path
 
 try:
@@ -15,11 +18,23 @@ try:
 except ImportError:
     HAS_BS4 = False
 
+try:
+    import requests
+    HAS_REQUESTS = True
+except ImportError:
+    HAS_REQUESTS = False
+
 from .config import WIKI_TO_KEY_MAPPINGS, LEGACY_KEYS, STRATAGEMS_JSON
 
 
-# Wiki URL
+# Wiki URL (HTML – may be behind Cloudflare)
 STRATAGEMS_PAGE = "https://helldivers.wiki.gg/wiki/Stratagems"
+# MediaWiki API (same host but often not behind the same challenge)
+WIKI_API_URL = "https://helldivers.wiki.gg/api.php"
+
+# Retry config for HTML fallback
+HTML_FETCH_RETRIES = 2
+HTML_FETCH_RETRY_DELAY_SEC = 1.5
 
 
 def check_dependencies() -> bool:
@@ -34,7 +49,7 @@ def check_dependencies() -> bool:
 def fetch_page(url: str) -> str:
     """Fetch a page using curl to avoid bot detection."""
     result = subprocess.run(
-        ['curl', '-s', '--compressed', 
+        ['curl', '-s', '--compressed',
          '-H', 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
          '-H', 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
          '-H', 'Accept-Language: en-US,en;q=0.5',
@@ -45,6 +60,96 @@ def fetch_page(url: str) -> str:
     if result.returncode != 0:
         raise RuntimeError(f"curl failed: {result.stderr}")
     return result.stdout
+
+
+def fetch_wikitext_via_api(title: str = "Stratagems") -> str | None:
+    """
+    Fetch page wikitext via MediaWiki API. Bypasses Cloudflare challenge
+    that often blocks direct HTML fetches.
+    """
+    if not HAS_REQUESTS:
+        return None
+    params = {
+        "action": "query",
+        "prop": "revisions",
+        "rvprop": "content",
+        "rvslots": "main",
+        "format": "json",
+        "titles": title,
+    }
+    try:
+        r = requests.get(
+            WIKI_API_URL,
+            params=params,
+            headers={"User-Agent": "Helldivers2StreamController/1.0 (https://github.com/StreamController)"},
+            timeout=15,
+        )
+        r.raise_for_status()
+        data = r.json()
+        pages = data.get("query", {}).get("pages", {})
+        if not pages:
+            return None
+        page = next(iter(pages.values()))
+        if "missing" in page:
+            return None
+        revs = page.get("revisions")
+        if not revs:
+            return None
+        slots = revs[0].get("slots", {})
+        main = slots.get("main", {})
+        return main.get("*")
+    except Exception:
+        return None
+
+
+def _parse_stratagem_code(template_arg: str) -> list[str]:
+    """Convert {{Stratagem_code|down|left|up|right}} args to ['DOWN','LEFT','UP','RIGHT']."""
+    direction_map = {
+        "up": "UP",
+        "down": "DOWN",
+        "left": "LEFT",
+        "right": "RIGHT",
+    }
+    out = []
+    for part in template_arg.strip().lower().split("|"):
+        part = part.strip()
+        if part in direction_map:
+            out.append(direction_map[part])
+    return out
+
+
+def _extract_wiki_link_name(cell: str) -> str | None:
+    """Extract display name from wiki link [[Page|Label]] or [[Page]]."""
+    # Match [[...]] or [[...|...]]; exclude File:, Category:, etc.
+    m = re.search(r"\[\[(?!File:|Category:)([^\]|]+)(?:\|([^\]]+))?\]\]", cell)
+    if not m:
+        return None
+    return (m.group(2) or m.group(1)).strip()
+
+
+def parse_wikitext_stratagems(wikitext: str) -> dict[str, list[str]]:
+    """
+    Parse wikitext for wikitable stratagem rows: stratagem name from [[...]]
+    and arrow sequence from {{Stratagem_code|...}}. Returns same shape as
+    scrape_stratagems_raw: {wiki_name: [UP, DOWN, ...]}.
+    """
+    stratagems = {}
+    skip_names = ("warbonds", "helldivers", "category", "ship module", "dlc")
+    current_name = None
+    lines = wikitext.split("\n")
+    for line in lines:
+        # Update current stratagem name from any wiki link (except File:/Category)
+        name = _extract_wiki_link_name(line)
+        if name and len(name) > 2 and not name.startswith("["):
+            if not any(skip in name.lower() for skip in skip_names):
+                current_name = name
+        # Parse Stratagem_code (or "Stratagem code" with space) and attach to current name
+        code_m = re.search(r"\{\{Stratagem[_ ]code\|([^}]+)\}\}", line, re.IGNORECASE)
+        if code_m and current_name:
+            arrows = _parse_stratagem_code(code_m.group(1))
+            if len(arrows) >= 3:
+                stratagems[current_name] = arrows
+    return stratagems
 
 
 def normalize_wiki_name(name: str) -> str:
@@ -85,53 +190,28 @@ def wiki_name_to_key(wiki_name: str) -> str:
     return "".join(word.capitalize() for word in words)
 
 
-def scrape_stratagems_raw(verbose: bool = False) -> dict[str, list[str]]:
-    """
-    Scrape all stratagem codes from the wiki, keeping original wiki names.
-    
-    Returns:
-        Dict mapping original wiki name to arrow code list
-    """
-    if not check_dependencies():
-        return {}
-    
-    print(f"Fetching stratagems from: {STRATAGEMS_PAGE}")
-    html = fetch_page(STRATAGEMS_PAGE)
-    
+def _scrape_stratagems_from_html(html: str, verbose: bool = False) -> dict[str, list[str]]:
+    """Parse stratagems from full wiki HTML (used as fallback)."""
     soup = BeautifulSoup(html, 'html.parser')
-    
-    stratagems = {}
-    
-    # Find all tables with class 'wikitable'
     tables = soup.find_all('table', class_='wikitable')
-    print(f"Found {len(tables)} stratagem tables")
-    
+    stratagems = {}
     for table in tables:
         rows = table.find_all('tr')
-        
-        for row in rows[1:]:  # Skip header row
+        for row in rows[1:]:
             cells = row.find_all(['td', 'th'])
-            
-            # Get stratagem name (usually in first cell with a link)
             wiki_name = ''
             for cell in cells:
                 link = cell.find('a')
                 if link:
                     text = link.get_text(strip=True)
-                    # Skip very short names or navigation links
                     if text and len(text) > 2 and not text.startswith('['):
                         wiki_name = text
                         break
-            
             if not wiki_name:
                 continue
-            
-            # Skip non-stratagem entries
             skip_names = ['warbonds', 'helldivers', 'category', 'ship module', 'dlc']
             if any(skip in wiki_name.lower() for skip in skip_names):
                 continue
-            
-            # Get arrows from all cells
             arrows = []
             for cell in cells:
                 for img in cell.find_all('img'):
@@ -145,14 +225,54 @@ def scrape_stratagems_raw(verbose: bool = False) -> dict[str, list[str]]:
                             arrows.append('LEFT')
                         elif 'Right' in alt:
                             arrows.append('RIGHT')
-            
-            # Valid stratagems have at least 3 arrows
             if arrows and len(arrows) >= 3:
                 stratagems[wiki_name] = arrows
                 if verbose:
                     print(f"  {wiki_name}: {' '.join(arrows)}")
-    
     return stratagems
+
+
+def scrape_stratagems_raw(verbose: bool = False) -> dict[str, list[str]]:
+    """
+    Scrape all stratagem codes from the wiki, keeping original wiki names.
+
+    Uses the MediaWiki API first (reliable; not blocked by Cloudflare).
+    Falls back to HTML scraping with retries when the API is unavailable.
+    """
+    if not check_dependencies():
+        return {}
+
+    # 1) Prefer MediaWiki API – returns wikitext and avoids Cloudflare issues
+    wikitext = fetch_wikitext_via_api("Stratagems")
+    if wikitext:
+        stratagems = parse_wikitext_stratagems(wikitext)
+        if len(stratagems) >= 10:
+            print(f"Fetching stratagems from: {WIKI_API_URL} (MediaWiki API)")
+            print(f"Found {len(stratagems)} stratagems from wiki (parsed from API wikitext)")
+            if verbose:
+                for name, arrows in sorted(stratagems.items()):
+                    print(f"  {name}: {' '.join(arrows)}")
+            return stratagems
+        # API returned too few – might be wrong page or format; fall back to HTML
+        stratagems = {}
+
+    # 2) Fallback: fetch HTML (may hit Cloudflare challenge); retry a few times
+    print(f"Fetching stratagems from: {STRATAGEMS_PAGE}")
+    for attempt in range(HTML_FETCH_RETRIES):
+        if attempt > 0:
+            time.sleep(HTML_FETCH_RETRY_DELAY_SEC)
+            print(f"Retry {attempt + 1}/{HTML_FETCH_RETRIES}...")
+        try:
+            html = fetch_page(STRATAGEMS_PAGE)
+        except RuntimeError:
+            continue
+        tables = BeautifulSoup(html, 'html.parser').find_all('table', class_='wikitable')
+        print(f"Found {len(tables)} stratagem tables")
+        if len(tables) >= 2:
+            stratagems = _scrape_stratagems_from_html(html, verbose=verbose)
+            if stratagems:
+                return stratagems
+    return {}
 
 
 def scrape_stratagems(verbose: bool = False) -> dict[str, list[str]]:
