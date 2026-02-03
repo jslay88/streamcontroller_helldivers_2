@@ -64,6 +64,7 @@ STRATAGEM_MAPPINGS = {
     "TectonicDrill": {"wiki": "Tectonic Drill", "svg": "Tectonic Drill", "name": "Tectonic Drill"},
     "DarkFluidVessel": {"wiki": "Dark Fluid Vessel", "svg": "Dark Fluid Vessel", "name": "Dark Fluid Vessel"},
     "SSDDelivery": {"wiki": "SSSD Delivery", "svg": "Upload Data", "name": "SSSD Delivery"},
+    "CallInSuperDestroyer": {"wiki": "Call In Super Destroyer", "svg": "Call In Super Destroyer", "name": "Call In Super Destroyer"},
     
     # =========================================================================
     # PATRIOTIC ADMINISTRATION CENTER (WEAPONS)
@@ -203,6 +204,11 @@ STRATAGEM_MAPPINGS = {
     "Maxigun": {"wiki": "M-1000 Maxigun", "svg": "Maxigun", "name": "Maxigun"},
     "DefoliationTool": {"wiki": "CQC-9 Defoliation Tool", "svg": "Defoliation Tool", "name": "Defoliation Tool"},
     "GuardDogHotDog": {"wiki": "AX/FLAM-75 \"Guard Dog\" Hot Dog", "svg": "Guard Dog Hot Dog", "name": "\"Guard Dog\" Hot Dog"},
+
+    # =========================================================================
+    # REDACTED REGIMENT
+    # =========================================================================
+    "C4Pack": {"wiki": "B/MD C4 Pack", "svg": "C4 Pack", "name": "C4 Pack"},
 }
 
 

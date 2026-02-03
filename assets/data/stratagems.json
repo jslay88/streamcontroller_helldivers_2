@@ -65,6 +65,24 @@
     "UP",
     "LEFT"
   ],
+  "BmdC4Pack": [
+    "DOWN",
+    "RIGHT",
+    "UP",
+    "UP",
+    "RIGHT",
+    "UP"
+  ],
+  "CallInSuperDestroyer": [
+    "UP",
+    "UP",
+    "DOWN",
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "LEFT",
+    "RIGHT"
+  ],
   "CargoContainer": [
     "UP",
     "UP",
