@@ -7,8 +7,7 @@ Generates en_US.json with stratagem names and smart label strings.
 import json
 from pathlib import Path
 
-from .config import DISPLAY_NAMES, LOCALE_EN_US
-from .scraper import load_stratagems
+from .config import DISPLAY_NAMES, LOCALE_EN_US, STRATAGEM_MAPPINGS
 
 
 def split_into_labels(name: str, max_label_length: int = 12) -> dict[str, str]:
@@ -95,14 +94,15 @@ def generate_locale_entries(keys: list[str] = None) -> dict:
     Generate locale entries for all stratagems.
     
     Args:
-        keys: Optional list of stratagem keys. If None, uses all from stratagems.json.
+        keys: Optional list of stratagem keys. If None, uses all from
+              STRATAGEM_MAPPINGS (config) so every configured stratagem
+              gets a locale entry, even if it has no scraped sequence yet.
         
     Returns:
         Dict ready to be serialized as JSON
     """
     if keys is None:
-        stratagems = load_stratagems()
-        keys = list(stratagems.keys())
+        keys = list(STRATAGEM_MAPPINGS.keys())
     
     locale = {
         "plugin.name": "HELLDIVERS 2",

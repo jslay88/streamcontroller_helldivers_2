@@ -65,6 +65,17 @@
     "UP",
     "LEFT"
   ],
+  "BastionMkXvi": [
+    "LEFT",
+    "DOWN",
+    "RIGHT",
+    "DOWN",
+    "LEFT",
+    "DOWN",
+    "UP",
+    "DOWN",
+    "UP"
+  ],
   "C4Pack": [
     "DOWN",
     "RIGHT",
@@ -584,6 +595,8 @@
     "DOWN"
   ],
   "SSDDelivery": [
+    "DOWN",
+    "DOWN",
     "DOWN",
     "DOWN",
     "DOWN",

@@ -62,20 +62,20 @@ def fetch_page(url: str) -> str:
     return result.stdout
 
 
-def fetch_wikitext_via_api(title: str = "Stratagems") -> str | None:
+def fetch_parsed_html_via_api(title: str = "Stratagems") -> str | None:
     """
-    Fetch page wikitext via MediaWiki API. Bypasses Cloudflare challenge
-    that often blocks direct HTML fetches.
+    Fetch rendered HTML via the MediaWiki parse API. This expands all
+    templates (e.g. {{Stratagem Table}}) so we get the full page content
+    even when the wiki restructures into transclusions. Also bypasses the
+    Cloudflare challenge that blocks direct HTML fetches.
     """
     if not HAS_REQUESTS:
         return None
     params = {
-        "action": "query",
-        "prop": "revisions",
-        "rvprop": "content",
-        "rvslots": "main",
+        "action": "parse",
+        "page": title,
+        "prop": "text",
         "format": "json",
-        "titles": title,
     }
     try:
         r = requests.get(
@@ -86,70 +86,10 @@ def fetch_wikitext_via_api(title: str = "Stratagems") -> str | None:
         )
         r.raise_for_status()
         data = r.json()
-        pages = data.get("query", {}).get("pages", {})
-        if not pages:
-            return None
-        page = next(iter(pages.values()))
-        if "missing" in page:
-            return None
-        revs = page.get("revisions")
-        if not revs:
-            return None
-        slots = revs[0].get("slots", {})
-        main = slots.get("main", {})
-        return main.get("*")
+        return data.get("parse", {}).get("text", {}).get("*")
     except Exception:
         return None
 
-
-def _parse_stratagem_code(template_arg: str) -> list[str]:
-    """Convert {{Stratagem_code|down|left|up|right}} args to ['DOWN','LEFT','UP','RIGHT']."""
-    direction_map = {
-        "up": "UP",
-        "down": "DOWN",
-        "left": "LEFT",
-        "right": "RIGHT",
-    }
-    out = []
-    for part in template_arg.strip().lower().split("|"):
-        part = part.strip()
-        if part in direction_map:
-            out.append(direction_map[part])
-    return out
-
-
-def _extract_wiki_link_name(cell: str) -> str | None:
-    """Extract display name from wiki link [[Page|Label]] or [[Page]]."""
-    # Match [[...]] or [[...|...]]; exclude File:, Category:, etc.
-    m = re.search(r"\[\[(?!File:|Category:)([^\]|]+)(?:\|([^\]]+))?\]\]", cell)
-    if not m:
-        return None
-    return (m.group(2) or m.group(1)).strip()
-
-
-def parse_wikitext_stratagems(wikitext: str) -> dict[str, list[str]]:
-    """
-    Parse wikitext for wikitable stratagem rows: stratagem name from [[...]]
-    and arrow sequence from {{Stratagem_code|...}}. Returns same shape as
-    scrape_stratagems_raw: {wiki_name: [UP, DOWN, ...]}.
-    """
-    stratagems = {}
-    skip_names = ("warbonds", "helldivers", "category", "ship module", "dlc")
-    current_name = None
-    lines = wikitext.split("\n")
-    for line in lines:
-        # Update current stratagem name from any wiki link (except File:/Category)
-        name = _extract_wiki_link_name(line)
-        if name and len(name) > 2 and not name.startswith("["):
-            if not any(skip in name.lower() for skip in skip_names):
-                current_name = name
-        # Parse Stratagem_code (or "Stratagem code" with space) and attach to current name
-        code_m = re.search(r"\{\{Stratagem[_ ]code\|([^}]+)\}\}", line, re.IGNORECASE)
-        if code_m and current_name:
-            arrows = _parse_stratagem_code(code_m.group(1))
-            if len(arrows) >= 3:
-                stratagems[current_name] = arrows
-    return stratagems
 
 
 def normalize_wiki_name(name: str) -> str:
@@ -190,6 +130,29 @@ def wiki_name_to_key(wiki_name: str) -> str:
     return "".join(word.capitalize() for word in words)
 
 
+def _extract_arrows_from_cells(cells) -> list[str]:
+    """Extract arrow directions from table cells' <img> alt text.
+
+    Handles both old format ("Arrow Down") and new format
+    ("Stratagem Arrow Down.svg").
+    """
+    arrows = []
+    for cell in cells:
+        for img in cell.find_all('img'):
+            alt = img.get('alt', '').lower()
+            if 'arrow' not in alt:
+                continue
+            if 'down' in alt:
+                arrows.append('DOWN')
+            elif 'up' in alt:
+                arrows.append('UP')
+            elif 'left' in alt:
+                arrows.append('LEFT')
+            elif 'right' in alt:
+                arrows.append('RIGHT')
+    return arrows
+
+
 def _scrape_stratagems_from_html(html: str, verbose: bool = False) -> dict[str, list[str]]:
     """Parse stratagems from full wiki HTML (used as fallback)."""
     soup = BeautifulSoup(html, 'html.parser')
@@ -212,19 +175,7 @@ def _scrape_stratagems_from_html(html: str, verbose: bool = False) -> dict[str, 
             skip_names = ['warbonds', 'helldivers', 'category', 'ship module', 'dlc']
             if any(skip in wiki_name.lower() for skip in skip_names):
                 continue
-            arrows = []
-            for cell in cells:
-                for img in cell.find_all('img'):
-                    alt = img.get('alt', '')
-                    if 'Arrow' in alt:
-                        if 'Down' in alt:
-                            arrows.append('DOWN')
-                        elif 'Up' in alt:
-                            arrows.append('UP')
-                        elif 'Left' in alt:
-                            arrows.append('LEFT')
-                        elif 'Right' in alt:
-                            arrows.append('RIGHT')
+            arrows = _extract_arrows_from_cells(cells)
             if arrows and len(arrows) >= 3:
                 stratagems[wiki_name] = arrows
                 if verbose:
@@ -236,27 +187,23 @@ def scrape_stratagems_raw(verbose: bool = False) -> dict[str, list[str]]:
     """
     Scrape all stratagem codes from the wiki, keeping original wiki names.
 
-    Uses the MediaWiki API first (reliable; not blocked by Cloudflare).
-    Falls back to HTML scraping with retries when the API is unavailable.
+    Uses the MediaWiki parse API first (reliable, expands templates, not
+    blocked by Cloudflare). Falls back to direct HTML fetch with retries.
     """
     if not check_dependencies():
         return {}
 
-    # 1) Prefer MediaWiki API – returns wikitext and avoids Cloudflare issues
-    wikitext = fetch_wikitext_via_api("Stratagems")
-    if wikitext:
-        stratagems = parse_wikitext_stratagems(wikitext)
+    # 1) Prefer MediaWiki parse API – returns rendered HTML with templates
+    #    expanded (e.g. {{Stratagem Table}}) and avoids Cloudflare.
+    api_html = fetch_parsed_html_via_api("Stratagems")
+    if api_html:
+        stratagems = _scrape_stratagems_from_html(api_html, verbose=verbose)
         if len(stratagems) >= 10:
-            print(f"Fetching stratagems from: {WIKI_API_URL} (MediaWiki API)")
-            print(f"Found {len(stratagems)} stratagems from wiki (parsed from API wikitext)")
-            if verbose:
-                for name, arrows in sorted(stratagems.items()):
-                    print(f"  {name}: {' '.join(arrows)}")
+            print(f"Fetching stratagems from: {WIKI_API_URL} (MediaWiki parse API)")
+            print(f"Found {len(stratagems)} stratagems from wiki")
             return stratagems
-        # API returned too few – might be wrong page or format; fall back to HTML
-        stratagems = {}
 
-    # 2) Fallback: fetch HTML (may hit Cloudflare challenge); retry a few times
+    # 2) Fallback: fetch HTML directly (may hit Cloudflare challenge)
     print(f"Fetching stratagems from: {STRATAGEMS_PAGE}")
     for attempt in range(HTML_FETCH_RETRIES):
         if attempt > 0:

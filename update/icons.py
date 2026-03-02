@@ -116,8 +116,25 @@ def is_white_color(color: str) -> bool:
     return False
 
 
-def extract_accent_color(svg_content: str) -> str:
-    """Extract the accent color from an SVG file."""
+def _is_hex_color(color: str) -> bool:
+    """Check if a string is a valid hex color (#rgb or #rrggbb)."""
+    color = color.strip()
+    if not color.startswith('#'):
+        return False
+    hex_part = color[1:]
+    if len(hex_part) not in (3, 6):
+        return False
+    return all(c in '0123456789abcdefABCDEF' for c in hex_part)
+
+
+def extract_accent_color(svg_content: str) -> tuple[str, bool]:
+    """Extract the accent color from an SVG file.
+    
+    Returns:
+        Tuple of (color, used_default_fallback). used_default_fallback is True
+        when no valid hex fill was found (e.g. only fill=\"none\") and we fell
+        back to DEFAULT_ICON_COLOR.
+    """
     colors = []
     
     fill_attr_pattern = re.compile(r'fill\s*=\s*["\']([^"\']+)["\']', re.IGNORECASE)
@@ -128,10 +145,12 @@ def extract_accent_color(svg_content: str) -> str:
     
     for color in colors:
         color = color.strip()
+        if not _is_hex_color(color):
+            continue
         if not is_white_color(color):
-            return normalize_hex_color(color)
+            return normalize_hex_color(color), False
     
-    return DEFAULT_ICON_COLOR
+    return DEFAULT_ICON_COLOR, True
 
 
 def has_corner_borders(svg_content: str) -> bool:
@@ -301,7 +320,9 @@ def svg_to_png_with_borders(
     """
     svg_content = svg_path.read_text(encoding='utf-8')
     
-    original_color = extract_accent_color(svg_content)
+    original_color, used_default = extract_accent_color(svg_content)
+    if used_default:
+        print(f"  WARNING: {svg_path.name}: No valid fill color found, using default {DEFAULT_ICON_COLOR}")
     color, was_mapped = apply_color_mapping(original_color)
     
     had_corners = has_corner_borders(svg_content)
@@ -377,7 +398,8 @@ def generate_icons(
     
     converted = 0
     errors = 0
-    
+    failed_svgs: list[str] = []
+
     for category, svgs in sorted(svgs_by_category.items()):
         print(f"\n{category}:")
         
@@ -387,7 +409,9 @@ def generate_icons(
             
             if dry_run:
                 svg_content = svg_path.read_text(encoding='utf-8')
-                original_color = extract_accent_color(svg_content)
+                original_color, used_default = extract_accent_color(svg_content)
+                if used_default:
+                    print(f"  WARNING: {svg_name}: No valid fill color found, would use default {DEFAULT_ICON_COLOR}")
                 final_color, was_mapped = apply_color_mapping(original_color)
                 had_corners = has_corner_borders(svg_content)
                 corner_note = " (will remove corners)" if had_corners else ""
@@ -412,13 +436,16 @@ def generate_icons(
                 except Exception as e:
                     print(f"  ERROR: {svg_name}: {e}")
                     errors += 1
-    
+                    failed_svgs.append(svg_name)
+
     if dry_run:
         print(f"\nDry run complete. Would convert {total_svgs} files.")
     else:
         print(f"\nConversion complete!")
         print(f"  Converted: {converted}")
         print(f"  Errors: {errors}")
+        if errors and failed_svgs:
+            print(f"  Failed: {', '.join(failed_svgs)}")
     
     return converted, errors
 
