@@ -135,6 +135,7 @@ The plugin has a settings page accessible via **Settings → Plugins → HELLDIV
 |---------|-------------|---------|
 | **Key Delay** | Delay between key presses (0.01-0.20 seconds). Increase if stratagems fail. | 0.03s |
 | **Modifier Key** | Key to open stratagem menu when not in Hero mode. Options: Left/Right Ctrl, Alt, Shift | Left Ctrl |
+| **Direction Keys** | Keys used for directional inputs. Options: Arrow keys or WASD. | Arrow keys |
 | **Hold Modifier Key** | If ON, holds modifier during entire sequence. If OFF, presses/releases modifier then types sequence. | ON |
 | **Show Labels** | If ON, displays text labels on stratagem buttons. If OFF, shows icons only. | ON |
 
@@ -152,6 +153,7 @@ Settings are managed through StreamController's plugin settings system:
 ```python
 DEFAULT_KEY_DELAY = 0.03        # Seconds between key presses
 DEFAULT_MODIFIER_KEY = "KEY_LEFTCTRL"  # evdev key code
+DEFAULT_DIRECTION_KEY_LAYOUT = "arrow_keys"  # Arrow keys or WASD
 DEFAULT_HOLD_MODIFIER = True    # Hold modifier during sequence
 DEFAULT_SHOW_LABELS = True      # Show text labels on buttons
 
@@ -216,7 +218,7 @@ python test_stratagems.py
 ### How It Works
 
 1. Focus the window
-2. Press your Stream Deck button (or type arrow keys manually)
+2. Press your Stream Deck button (or type arrow keys/WASD manually)
 3. The tool displays the input sequence (↑ ↓ ← →)
 4. Shows which stratagem matches the sequence
 5. Press Escape to clear and try another

@@ -10,7 +10,7 @@ Usage:
 
 Controls:
     - Focus the window
-    - Press arrow keys (with or without modifier)
+    - Press arrow keys or W/A/S/D (with or without modifier)
     - The tool will match sequences to stratagems
     - Press Escape to clear the current sequence
 """
@@ -28,12 +28,20 @@ from gi.repository import Gtk, Adw, Gdk, GLib
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 STRATAGEMS_PATH = os.path.join(SCRIPT_DIR, "assets", "data", "stratagems.json")
 
-# Arrow key mappings
+# Supported direction key mappings
 KEY_TO_DIRECTION = {
     Gdk.KEY_Up: "UP",
     Gdk.KEY_Down: "DOWN",
     Gdk.KEY_Left: "LEFT",
     Gdk.KEY_Right: "RIGHT",
+    Gdk.KEY_w: "UP",
+    Gdk.KEY_W: "UP",
+    Gdk.KEY_s: "DOWN",
+    Gdk.KEY_S: "DOWN",
+    Gdk.KEY_a: "LEFT",
+    Gdk.KEY_A: "LEFT",
+    Gdk.KEY_d: "RIGHT",
+    Gdk.KEY_D: "RIGHT",
 }
 
 DIRECTION_DISPLAY = {
@@ -100,7 +108,7 @@ class StratagemValidator(Adw.ApplicationWindow):
         
         # Instructions
         instructions = Gtk.Label(
-            label="Press arrow keys to input a stratagem sequence.\n"
+            label="Press arrow keys or W/A/S/D to input a stratagem sequence.\n"
                   "Press Escape to clear."
         )
         instructions.set_wrap(True)
@@ -193,7 +201,7 @@ class StratagemValidator(Adw.ApplicationWindow):
             self.update_modifier_display()
             return True
         
-        # Check if it's an arrow key
+        # Check if it is a configured direction key
         direction = KEY_TO_DIRECTION.get(keyval)
         if direction:
             # Check if modifier is currently held
@@ -351,7 +359,7 @@ def main():
         sys.exit(1)
     
     print(f"Loaded {len(stratagems)} stratagems")
-    print("Focus the window and press arrow keys to test.")
+    print("Focus the window and press arrow keys or W/A/S/D to test.")
     
     app = ValidatorApp(stratagems)
     app.run(sys.argv)

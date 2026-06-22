@@ -13,6 +13,12 @@ gi.require_version("Adw", "1")
 from gi.repository import Gtk, Adw
 from loguru import logger as log
 
+from key_mapping import (
+    DEFAULT_DIRECTION_KEY_LAYOUT,
+    get_direction_key as resolve_direction_key,
+    normalize_direction_key_layout,
+)
+
 
 log.debug("Init HELLDIVERS 2")
 
@@ -22,6 +28,11 @@ DEFAULT_KEY_DELAY = 0.03
 DEFAULT_MODIFIER_KEY = "KEY_LEFTCTRL"
 DEFAULT_HOLD_MODIFIER = True  # False = press/release, True = hold during sequence
 DEFAULT_SHOW_LABELS = True  # Show text labels on buttons
+
+DIRECTION_KEY_LAYOUT_OPTIONS = {
+    "Arrow keys": "arrow_keys",
+    "WASD keys": "wasd",
+}
 
 # Available modifier keys
 MODIFIER_KEYS = {
@@ -220,10 +231,11 @@ class CustomStratagemButton(KeyAction):
                     sleep(key_delay)
             
             for key in sequence:
-                self.plugin_base.ui.write(ecodes.EV_KEY, ecodes.ecodes[f"KEY_{key}"], 1)
+                key_code = ecodes.ecodes[self.plugin_base.get_direction_key(key)]
+                self.plugin_base.ui.write(ecodes.EV_KEY, key_code, 1)
                 self.plugin_base.ui.syn()
                 sleep(key_delay)
-                self.plugin_base.ui.write(ecodes.EV_KEY, ecodes.ecodes[f"KEY_{key}"], 0)
+                self.plugin_base.ui.write(ecodes.EV_KEY, key_code, 0)
                 self.plugin_base.ui.syn()
                 sleep(key_delay)
         except Exception as e:
@@ -410,10 +422,11 @@ class StratagemButton(KeyAction):
                     sleep(key_delay)
             
             for key in self.stratagem:
-                self.plugin_base.ui.write(ecodes.EV_KEY, ecodes.ecodes[f"KEY_{key}"], 1)
+                key_code = ecodes.ecodes[self.plugin_base.get_direction_key(key)]
+                self.plugin_base.ui.write(ecodes.EV_KEY, key_code, 1)
                 self.plugin_base.ui.syn()
                 sleep(key_delay)
-                self.plugin_base.ui.write(ecodes.EV_KEY, ecodes.ecodes[f"KEY_{key}"], 0)
+                self.plugin_base.ui.write(ecodes.EV_KEY, key_code, 0)
                 self.plugin_base.ui.syn()
                 sleep(key_delay)
         except Exception as e:
@@ -520,6 +533,17 @@ class HellDiversPlugin(PluginBase):
         """Get the modifier key to use for opening stratagem menu."""
         settings = self.get_settings()
         return settings.get("modifier_key", DEFAULT_MODIFIER_KEY)
+
+    def get_direction_key_layout(self) -> str:
+        """Get the key layout used for stratagem directions."""
+        settings = self.get_settings()
+        return normalize_direction_key_layout(
+            settings.get("direction_key_layout", DEFAULT_DIRECTION_KEY_LAYOUT)
+        )
+
+    def get_direction_key(self, direction: str) -> str:
+        """Get the evdev key name mapped to a stratagem direction."""
+        return resolve_direction_key(direction, self.get_direction_key_layout())
     
     def get_hold_modifier(self) -> bool:
         """Get whether to hold the modifier key during the sequence."""
@@ -549,6 +573,7 @@ class HellDiversPlugin(PluginBase):
         # Execution settings
         group.add(self._create_key_delay_row())
         group.add(self._create_modifier_key_row())
+        group.add(self._create_direction_key_layout_row())
         group.add(self._create_hold_modifier_row())
         
         # Display settings
@@ -621,6 +646,43 @@ class HellDiversPlugin(PluginBase):
             name = modifier_names[selected]
             key = MODIFIER_KEYS[name]
             self._save_setting("modifier_key", key)
+
+    def _create_direction_key_layout_row(self) -> Adw.ComboRow:
+        """Create the direction key layout combo row."""
+        row = Adw.ComboRow(
+            title="Direction Keys",
+            subtitle="Keys mapped to Up, Down, Left, and Right stratagem inputs"
+        )
+
+        string_list = Gtk.StringList()
+        layout_names = list(DIRECTION_KEY_LAYOUT_OPTIONS.keys())
+        for name in layout_names:
+            string_list.append(name)
+
+        row.set_model(string_list)
+
+        current_layout = self.get_direction_key_layout()
+        for i, name in enumerate(layout_names):
+            if DIRECTION_KEY_LAYOUT_OPTIONS[name] == current_layout:
+                row.set_selected(i)
+                break
+
+        row.connect(
+            "notify::selected",
+            self._on_direction_key_layout_changed,
+            layout_names,
+        )
+        return row
+
+    def _on_direction_key_layout_changed(self, row, _, layout_names):
+        """Handle direction key layout changes."""
+        selected = row.get_selected()
+        if selected < len(layout_names):
+            name = layout_names[selected]
+            self._save_setting(
+                "direction_key_layout",
+                DIRECTION_KEY_LAYOUT_OPTIONS[name],
+            )
     
     def _create_hold_modifier_row(self) -> Adw.SwitchRow:
         """Create the hold modifier switch row."""

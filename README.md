@@ -2,7 +2,7 @@
 
 Assumes the following:
 * Left Control will open Stratagem menu (Hold/Press)
-* Stratagem Directions have been remapped to arrow keys (Up, Down, Left, Right)
+* Stratagem directions use either the arrow keys or W/A/S/D, selectable in the plugin settings
 
 ## For Users
 
@@ -18,6 +18,7 @@ Access settings via **Settings → Plugins → HELLDIVERS 2 → ⚙️**
 |---------|-------------|---------|
 | **Key Delay** | Delay between key presses. Increase if stratagems fail to register. | 0.03s |
 | **Modifier Key** | Key to open stratagem menu (Left/Right Ctrl, Alt, or Shift) | Left Ctrl |
+| **Direction Keys** | Keys used for Up, Down, Left, and Right stratagem inputs (Arrow keys or WASD) | Arrow keys |
 | **Hold Modifier Key** | Hold modifier during sequence vs press-and-release | ON |
 | **Show Labels** | Display text labels on buttons (OFF for icon-only look) | ON |
 
