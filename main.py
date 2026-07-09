@@ -13,11 +13,18 @@ gi.require_version("Adw", "1")
 from gi.repository import Gtk, Adw
 from loguru import logger as log
 
-from key_mapping import (
-    DEFAULT_DIRECTION_KEY_LAYOUT,
-    get_direction_key as resolve_direction_key,
-    normalize_direction_key_layout,
-)
+try:
+    from .key_mapping import (
+        DEFAULT_DIRECTION_KEY_LAYOUT,
+        get_direction_key as resolve_direction_key,
+        normalize_direction_key_layout,
+    )
+except ImportError:
+    from key_mapping import (
+        DEFAULT_DIRECTION_KEY_LAYOUT,
+        get_direction_key as resolve_direction_key,
+        normalize_direction_key_layout,
+    )
 
 
 log.debug("Init HELLDIVERS 2")
@@ -496,7 +503,7 @@ class HellDiversPlugin(PluginBase):
         self.register(
             plugin_name=self.lm.get("plugin.name"),
             github_repo="https://github.com/jslay88/streamcontroller_helldivers_2",
-            plugin_version="2.3.0",
+            plugin_version="2.3.1",
             app_version="1.5.0-beta"
         )
 
