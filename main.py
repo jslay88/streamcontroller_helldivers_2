@@ -13,18 +13,11 @@ gi.require_version("Adw", "1")
 from gi.repository import Gtk, Adw
 from loguru import logger as log
 
-try:
-    from .key_mapping import (
-        DEFAULT_DIRECTION_KEY_LAYOUT,
-        get_direction_key as resolve_direction_key,
-        normalize_direction_key_layout,
-    )
-except ImportError:
-    from key_mapping import (
-        DEFAULT_DIRECTION_KEY_LAYOUT,
-        get_direction_key as resolve_direction_key,
-        normalize_direction_key_layout,
-    )
+from .key_mapping import (
+    DEFAULT_DIRECTION_KEY_LAYOUT,
+    get_direction_key as resolve_direction_key,
+    normalize_direction_key_layout,
+)
 
 
 log.debug("Init HELLDIVERS 2")
