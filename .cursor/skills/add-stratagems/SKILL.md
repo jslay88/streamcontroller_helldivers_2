@@ -2,7 +2,7 @@
 name: add-stratagems
 description: >-
   Discover, map, generate, and ship new HELLDIVERS 2 stratagems for the
-  StreamController plugin, including plugin PRs, local Flatpak testing, and
+  StreamController plugin, including plugin PRs, local testing, and
   StreamController-Store hash bumps. Use when the user invokes add-stratagems,
   asks to add new stratagems, run discover, ship a plugin version, open a store
   PR, or restore the local StreamController install.
@@ -11,9 +11,11 @@ disable-model-invocation: true
 
 # Add Helldivers 2 Stratagems
 
-End-to-end workflow for new in-game stratagems. Read [AGENTS.md](../../../AGENTS.md) for label rules. Read [local.md](local.md) before any local StreamController or store-fork step. Use `jslay-writing-style` for commits and PR bodies.
+End-to-end workflow for new in-game stratagems. Read [AGENTS.md](../../../AGENTS.md) for label rules. Read [local.md](local.md) before any local StreamController or store-fork step.
 
 Do **not** commit or push unless the user asks.
+
+Resolve paths at runtime. Never assume a home directory, clone location, GitHub user, or remotes. See [local.md](local.md).
 
 ## Phase selection
 
@@ -27,7 +29,7 @@ Do **not** commit or push unless the user asks.
 
 ## Phase 1: Fresh main
 
-Plugin repo: `/home/jslay/dev/streamcontroller_helldivers_2`
+Work in the plugin repo root (directory that contains `update/config.py` and `manifest.json` with id `net_jslay_helldivers_2`).
 
 ```bash
 git fetch origin
@@ -41,8 +43,7 @@ git checkout -b feat/vX.Y.Z-new-stratagems
 ## Phase 2: Discover
 
 ```bash
-cd /home/jslay/dev/streamcontroller_helldivers_2
-python3 --version   # asdf python is fine
+python3 --version
 [ -d .venv ] || python3 -m venv .venv
 source .venv/bin/activate
 pip install -q -r update/requirements.txt
@@ -92,7 +93,7 @@ python -m update discover -v    # must be 0 new wiki, 0 unmapped SVGs
 python -m update validate       # no errors; extra CLASS/custom icons are fine
 ```
 
-Always `--skip-pages`. Default pages path is not the Flatpak install.
+Always `--skip-pages` unless the user gives an explicit `--pages-dir`. The default pages path is not the StreamController install.
 
 Expect only: `config.py`, `stratagems.json`, `locales/en_US.json`, **new** icon PNGs, version files. If existing PNGs rewrite with no visual change, leave them unstaged.
 
@@ -111,20 +112,21 @@ Only after the user asks to commit/push/PR.
 
 - Title: `vX.Y.Z: Add new stratagems from recent warbonds` (or the actual reason)
 - Body: terse bullets, list new keys/names, call out renames that kept their key
-- Remote: `origin` on `jslay88/streamcontroller_helldivers_2`
-- Follow the user git/PR rules (HEREDOC commit, `gh pr create`)
+- Push to `origin` and open the PR against that remote's default branch
+- Follow the user's git/PR rules (HEREDOC commit, `gh pr create`)
 
 If they name a related issue, put the full URL in the PR body.
 
-## Phase 7: Local Flatpak test
+## Phase 7: Local install test
 
 See [local.md](local.md). Summary:
 
-1. Backup `net_jslay_helldivers_2` if it is a real directory
-2. Symlink the git checkout into the Flatpak plugins dir
-3. Set `store.auto-update` to `false` **before** StreamController restarts (auto-update compares SHAs and `rmtree`s the plugin path; that can follow the symlink into this repo)
-4. Restart or launch StreamController
-5. Launch the tester if asked:
+1. Locate the StreamController data dir and the installed `net_jslay_helldivers_2` plugin
+2. Backup that plugin directory if it is a real directory
+3. Symlink this git checkout over it
+4. Set `store.auto-update` to `false` **before** StreamController restarts (auto-update compares SHAs and `rmtree`s the plugin path; that can follow the symlink into this repo)
+5. Restart or launch StreamController
+6. Launch the tester if asked:
 
 ```bash
 source .venv/bin/activate
@@ -135,17 +137,17 @@ python test_stratagems.py
 
 Only after the plugin change is on `origin/main` (merge commit SHA).
 
-Store checkout: `/home/jslay/dev/StreamController-Store`
+Locate a StreamController-Store checkout (see [local.md](local.md)). Need remotes: `upstream` → `StreamController/StreamController-Store`, `origin` → the user's fork.
 
 ```bash
 git fetch upstream
 git checkout -B update-plugin-helldivers_2-<fullsha> upstream/main
 ```
 
-In `Plugins.json`, set the helldivers entry `hash` to the **full** `origin/main` SHA (merge commit, not the feature commit). Schema is `{ "url", "hash" }` (not `commits`).
+In `Plugins.json`, set the helldivers entry `hash` to the **full** plugin-repo `origin/main` SHA (merge commit, not the feature commit). Schema is `{ "url", "hash" }` (not `commits`).
 
-- Push to `origin` (`jslay88/StreamController-Store`)
-- `gh pr create --repo StreamController/StreamController-Store --base main --head jslay88:<branch>`
+- Push to `origin`
+- `gh pr create --repo StreamController/StreamController-Store --base main --head <fork-owner>:<branch>`
 - Title: `update(helldivers_2): update hash for main`
 - Body: new hash, plugin version, plugin PR URL, plus any issue URL they asked to link
 - Check the store PR template boxes if they already tested locally
