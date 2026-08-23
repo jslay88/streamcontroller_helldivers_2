@@ -114,6 +114,16 @@ STRATAGEM_MAPPINGS = {
         "svg": "Call In Super Destroyer",
         "name": "Call In Super Destroyer",
     },
+    "AquiferDrill": {
+        "wiki": "Aquifer Drill",
+        "svg": "Prospecting Drill",
+        "name": "Aquifer Drill",
+    },
+    "TacticalVideoCamera": {
+        "wiki": "Tactical Video Camera",
+        "svg": "Upload Data",
+        "name": "Tactical Video Camera",
+    },
     # =========================================================================
     # PATRIOTIC ADMINISTRATION CENTER (WEAPONS)
     # =========================================================================
@@ -292,9 +302,19 @@ STRATAGEM_MAPPINGS = {
         "name": "Eagle 500kg Bomb",
     },
     "FastReconVehicle": {
-        "wiki": "M-102 Fast Recon Vehicle",
+        "wiki": "M-102 Gunner FRV",
         "svg": "Fast Recon Vehicle",
-        "name": "Fast Recon Vehicle",
+        "name": "Gunner FRV",
+    },
+    "SupplyFRV": {
+        "wiki": "M-103 Supply FRV",
+        "svg": "Supply FRV",
+        "name": "Supply FRV",
+    },
+    "IncineratorFRV": {
+        "wiki": "M-104 Incinerator FRV",
+        "svg": "Incinerator FRV",
+        "name": "Incinerator FRV",
     },
     "EagleRearm": {"wiki": "Eagle Rearm", "svg": "Eagle Rearm", "name": "Eagle Rearm"},
     # =========================================================================
@@ -524,6 +544,45 @@ STRATAGEM_MAPPINGS = {
         "wiki": "GL-28 Belt-Fed Grenade Launcher",
         "svg": "GL-28",
         "name": "GL-28",
+    },
+    # =========================================================================
+    # EXO EXPERTS
+    # =========================================================================
+    "LumbererExosuit": {
+        "wiki": "EXO-51 Lumberer Exosuit",
+        "svg": "Lumberer Exosuit",
+        "name": "Lumberer Exosuit",
+    },
+    "BreakthroughExosuit": {
+        "wiki": "EXO-55 Breakthrough Exosuit",
+        "svg": "Breakthrough Exosuit",
+        "name": "Breakthrough Exosuit",
+    },
+    "BulletStorm": {
+        "wiki": "MGX-42 Bullet Storm",
+        "svg": "Bullet Storm",
+        "name": "Bullet Storm",
+    },
+    # =========================================================================
+    # ENTRENCHED DIVISION
+    # =========================================================================
+    "Cremator": {
+        "wiki": "B/FLAM-80 Cremator",
+        "svg": "Cremator",
+        "name": "Cremator",
+    },
+    "GasMortarSentry": {
+        "wiki": "A/GM-17 Gas Mortar Sentry",
+        "svg": "Gas Mortar Sentry",
+        "name": "Gas Mortar Sentry",
+    },
+    # =========================================================================
+    # CASTELLAN'S CREED
+    # =========================================================================
+    "Meltagun": {
+        "wiki": "40-K Meltagun",
+        "svg": "40-K Meltagun",
+        "name": "40-K Meltagun",
     },
 }
 
