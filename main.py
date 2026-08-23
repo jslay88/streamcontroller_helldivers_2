@@ -496,7 +496,7 @@ class HellDiversPlugin(PluginBase):
         self.register(
             plugin_name=self.lm.get("plugin.name"),
             github_repo="https://github.com/jslay88/streamcontroller_helldivers_2",
-            plugin_version="2.3.1",
+            plugin_version="2.4.0",
             app_version="1.5.0-beta"
         )
 

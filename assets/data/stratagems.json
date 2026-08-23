@@ -33,6 +33,16 @@
     "UP",
     "UP"
   ],
+  "AquiferDrill": [
+    "LEFT",
+    "LEFT",
+    "LEFT",
+    "UP",
+    "DOWN",
+    "RIGHT",
+    "DOWN",
+    "DOWN"
+  ],
   "ArcThrower": [
     "DOWN",
     "RIGHT",
@@ -76,6 +86,23 @@
     "DOWN",
     "UP"
   ],
+  "BreakthroughExosuit": [
+    "LEFT",
+    "DOWN",
+    "RIGHT",
+    "LEFT",
+    "RIGHT",
+    "DOWN",
+    "UP"
+  ],
+  "BulletStorm": [
+    "DOWN",
+    "LEFT",
+    "DOWN",
+    "RIGHT",
+    "UP",
+    "LEFT"
+  ],
   "C4Pack": [
     "DOWN",
     "RIGHT",
@@ -114,6 +141,14 @@
     "LEFT",
     "RIGHT",
     "LEFT",
+    "UP"
+  ],
+  "Cremator": [
+    "DOWN",
+    "DOWN",
+    "RIGHT",
+    "DOWN",
+    "UP",
     "UP"
   ],
   "DarkFluidVessel": [
@@ -270,6 +305,13 @@
     "LEFT",
     "RIGHT"
   ],
+  "GasMortarSentry": [
+    "DOWN",
+    "UP",
+    "RIGHT",
+    "DOWN",
+    "LEFT"
+  ],
   "GatlingSentry": [
     "DOWN",
     "UP",
@@ -398,6 +440,15 @@
     "LEFT",
     "DOWN"
   ],
+  "IncineratorFRV": [
+    "LEFT",
+    "DOWN",
+    "RIGHT",
+    "LEFT",
+    "DOWN",
+    "UP",
+    "UP"
+  ],
   "JumpPack": [
     "DOWN",
     "UP",
@@ -420,6 +471,15 @@
     "UP",
     "RIGHT"
   ],
+  "LumbererExosuit": [
+    "LEFT",
+    "DOWN",
+    "RIGHT",
+    "UP",
+    "RIGHT",
+    "LEFT",
+    "UP"
+  ],
   "MachineGun": [
     "DOWN",
     "LEFT",
@@ -441,6 +501,14 @@
     "DOWN",
     "UP",
     "UP"
+  ],
+  "Meltagun": [
+    "DOWN",
+    "LEFT",
+    "UP",
+    "LEFT",
+    "LEFT",
+    "DOWN"
   ],
   "MortarSentry": [
     "DOWN",
@@ -692,6 +760,15 @@
     "DOWN",
     "UP"
   ],
+  "SupplyFRV": [
+    "LEFT",
+    "DOWN",
+    "LEFT",
+    "LEFT",
+    "DOWN",
+    "UP",
+    "RIGHT"
+  ],
   "SupplyPack": [
     "DOWN",
     "LEFT",
@@ -699,6 +776,15 @@
     "UP",
     "UP",
     "DOWN"
+  ],
+  "TacticalVideoCamera": [
+    "RIGHT",
+    "DOWN",
+    "DOWN",
+    "UP",
+    "LEFT",
+    "LEFT",
+    "UP"
   ],
   "TectonicDrill": [
     "UP",
